@@ -1,0 +1,50 @@
+<!--
+a) Solicite a idade do usuário
+b) Deve haver 2 botões abaixo: "Aposentadoria Homem" e "Aposentadoria Mulher"
+c) No primeiro botão, calcule e exiba um alert com o tempo que falta para se
+aposentar, se homem. Considere que um homem se aposenta com 70 anos
+d) No segundo botão, calcule e exiba um alert com o tempo que falta para se
+aposentar, se mulher. Considere que um mulher se aposenta com 60 anos
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="../../CSS/style_padrao.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idade para aposentar</title>
+</head>
+<body>
+    <div>
+        <label>Digite sua idade</label>
+        <input id="idade">
+        <button onclick="mulher()">Aposentadoria Mulher</button>
+        <br><br>
+        <button onclick="homem()">Aposentadoria Homem</button>
+    </div>
+</body>
+</html>
+
+<script>
+
+    function mulher(){
+        var idade = document.getElementById("idade").value;
+        var idadeMulher = 60 - idade;
+        if(idade >= 60){
+            alert("Você já pode se aposentar!");
+        }else{
+            alert("Falta ainda " +idadeMulher+ " anos para você se aposentar");
+        }
+    }
+
+    function homem(){
+        var idade = document.getElementById("idade").value;
+        var idadeHomem = 70 - idade;
+        if(idade >= 70){
+            alert("Você já pode se aposentar!");
+        }else{
+            alert("Falta ainda " +idadeHomem+ " anos para você se aposentar");
+        }
+    }
+</script>

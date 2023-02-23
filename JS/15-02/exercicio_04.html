@@ -1,0 +1,39 @@
+<!--
+Um estudante recebeu o Bilhete Único de estudante pela primeira vez e deseja
+saber quanto vai economizar por mês. O valor para estudante é metade do valor da
+passagem. Crie um programa que:
+a) Pergunte a ele o valor da passagem
+b) Pergunte a ele quantas viagens fará por mês
+c) Ao clicar num botão "Ver economia", deve ver um alerta com uma frase como esta:
+"Você economizará R$X por mês"
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="../../CSS/style_padrao.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economizar bilhete</title>
+</head>
+<body>
+    <div>
+        <label>Digite o valor da passagem</label>
+        <input id="inpt_valor">
+        <label>Quantas viagens fará esse mês?</label>
+        <input id="inpt_qtd">
+        <button onclick="economia()">Ver economia</button>
+        
+    </div>
+</body>
+</html>
+
+<script>
+    function economia(){
+        var qtdViagens = document.getElementById("inpt_qtd").value;
+        var valorPassagem = document.getElementById("inpt_valor").value;
+        var economizar = (qtdViagens * valorPassagem) / 2;
+
+        alert("Você economizará R$ " +economizar);
+    }
+</script>

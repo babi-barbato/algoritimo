@@ -1,0 +1,38 @@
+<!--
+Crie uma página que solicite ao usuário que digite o nome da rua/avenida/vila (X) e o número da casa onde mora (Y). 
+
+a) Deve haver um botão com o texto "Onde eu moro". 
+b) Ao clicar no botão, deve aparecer uma frase como esta na página: 
+     "Seu logradouro é X" 
+
+d) Na sequência da mensagem acima deve aparecer: 
+     "O número do seu logradouro é Y"
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <link rel="stylesheet" href="../../CSS/style_padrao.css">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercicio 4</title>
+    </head>
+    <body>
+        <div>
+            <label>Digite o nome da sua rua:</label>
+            <input id="inpt_local">
+            <label>Digite o número da sua casa:</label>
+            <input id="inpt_numero">
+            <button onclick="btn()">Onde eu moro</button>
+        </div>
+    </body>
+</html>
+
+<script>
+    function btn(){
+        var local = document.getElementById("inpt_local").value;
+        var numero = document.getElementById("inpt_numero").value;
+        alert("Seu logadouro é " + local);
+        alert("O número do seu logadouro é " + numero);
+    }
+</script>

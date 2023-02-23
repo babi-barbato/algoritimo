@@ -1,0 +1,41 @@
+<!--
+Crie uma página que solicite ao usuário que digite o nome do time que torce e quantos mundiais de clube ele. 
+
+a) Deve haver um botão com o texto "Amo meu time". 
+b) Ao clicar no botão, deve aparecer uma frase como está numa caixinha de alerta: 
+"O time X tem Y mundiais da FIFA"
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <link rel="stylesheet" href="../../CSS/style_padrao.css">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercicio 3</title>
+    </head>
+    <body>
+        <div>
+            <label>Digite o nome do seu time:</label>
+            <input id="inpt_time">
+            <label>Digite quantos mundiais ele tem:</label>
+            <input id="inpt_mundial">
+            <button onclick="btn()">Amo meu time</button>
+        </div>
+    </body>
+</html>
+
+<script>
+    function btn(){
+        var time = document.getElementById("inpt_time").value;
+        var mundial = document.getElementById("inpt_mundial").value;
+
+        if(mundial == 0){
+            alert("O time " + time + " não tem Mundiais da FIFA");
+        }else if (mundial == 1){
+            alert("O time " + time + " tem " + mundial + " Mundial da FIFA");
+        }else{
+            alert("O time " + time + " tem " + mundial + " Mundiais da FIFA");
+        }
+    }
+</script>

@@ -1,0 +1,38 @@
+<!--
+Enfim ela descobriu que quando um funcionário tem um salário de R$3.000,00, na verdade não cai esse valor em sua conta, pois pela CLT temos vários descontos.
+a) Solicite o valor do salário bruto do usuário
+b) Calcule o valor do desconto de INSS, que é 10% do valor do bruto
+c) Calcule o valor do desconto de IR, que é 20% do valor do bruto
+d) Calcule o valor do imposto sindical, que é 1/30 do bruto
+e) Exiba um alerta com uma frase como esta: "Apesar de seu bruto ser R$X, após os
+descontos, você receberá somente R$Y"
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="../../CSS/style_padrao.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sálario</title>
+</head>
+<body>
+    <div>
+        <label>Digite seu sálario bruto:</label>
+        <input id="inpt_salario">
+        <button onclick="calcular()">Calcular</button>
+    </div>
+</body>
+</html>
+
+<script>
+    function calcular(){
+        var salario = document.getElementById("inpt_salario").value;
+        var inss = salario * 0.1; //300
+        var ir = salario * 0.2; //600
+        var sindical = salario * (1/30); //100
+        var somaGeral = salario - (sindical + ir + inss);
+
+        alert("O seu sálario bruto é R$ " +salario+ " mas com os descontos seu sálario virou R$ " +somaGeral);
+    }
+</script>   

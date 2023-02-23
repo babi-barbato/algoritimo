@@ -1,0 +1,34 @@
+<!--
+Crie uma página que solicite ao usuário que digite seu peso e altura. 
+
+a) Deve haver um botão com o texto "Fale comigo". 
+b) Ao clicar no botão, deve aparecer uma frase como está numa caixinha de alerta: 
+"Você pesa X e tem Y de altura" - Onde X e Y são os valores que o usuário digitou, claro
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <link rel="stylesheet" href="../../CSS/style_padrao.css">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercicio 2</title>
+    </head>
+    <body>
+        <div>
+            <label>Digite seu peso:</label>
+            <input id="inpt_peso">
+            <label>Digite sua altura em metros:</label>
+            <input id="inpt_altura">
+            <button onclick="btn()">Fale Comigo!</button>
+        </div>
+    </body>
+</html>
+
+<script>
+    function btn(){
+        var altura = document.getElementById("inpt_altura").value;
+        var peso = document.getElementById("inpt_peso").value;
+        alert("Você pesa " + peso + " e tem " + altura + " de altura");
+    }
+</script>
