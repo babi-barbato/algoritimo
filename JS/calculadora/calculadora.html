@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style_calculadora.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+<div id="caixa_grande">
+    <div class="caixa_media">
+        <h1>Calculadora</h1>
+        <input id="vlr1"><br><br>ç;ç
+        <input id="vlr2"><br>
+        <button onclick="soma()">Soma</button>
+        <button onclick="subs()">Subtração</button>
+        <button onclick="divisao()">Divisão</button>
+        <br><br>
+        <button onclick="multi()">Multiplicação</button>
+        <button onclick="potencia()">Potencia</button>
+        <button onclick="media()">Média</button>
+        <br><br>
+    </div>
+    <div class="caixa_media">
+        <button onclick="sen()">Seno</button>
+        <button onclick="cos()">Cosseno</button>
+        <button onclick="tng()">Tangente</button>
+    </div>
+</div>
+</body>
+</html>
+<script>
+
+function soma(){
+    var n1 = Number(document.getElementById("vlr1").value);
+    var n2 = Number(document.getElementById("vlr2").value);
+
+    var resultado = n1 + n2;
+    alert("O resultado da soma dos dois números é: " + resultado);
+
+}
+function subs(){
+    var n1 = Number(document.getElementById("vlr1").value);
+    var n2 = Number(document.getElementById("vlr2").value);
+    var resultado = n1 - n2;
+
+    alert("O resultado da subtração dos dois números é: " + resultado);
+}
+function divisao(){
+    var n1 = Number(document.getElementById("vlr1").value);
+    var n2 = Number(document.getElementById("vlr2").value);
+    var resultado = n1 / n2;
+
+    alert("O resultado da divisão dos dois números é: " + resultado);
+}
+function multi(){
+    var n1 = Number(document.getElementById("vlr1").value);
+    var n2 = Number(document.getElementById("vlr2").value);
+    var resultado = n1 * n2;
+
+    alert("O resultado da multiplicação dos dois números é: " + resultado);
+}
+function potencia(){
+    var n1 = Number(document.getElementById("vlr1").value);
+    var n2 = Number(document.getElementById("vlr2").value);
+    var resultado = n1 ** n2;
+
+    alert("O resultado da potencia de " +n1+ " por " +n2+ " é: " + resultado);
+}
+function media(){
+    var n1 = Number(document.getElementById("vlr1").value);
+    var n2 = Number(document.getElementById("vlr2").value);
+    var resultado = (n1 + n2) / 2;
+
+    alert("A média dos dois números é: " + resultado);
+}
+function sen(){
+    var n1 = Number(document.getElementById("vlr1").value);
+    var n2 = Number(document.getElementById("vlr2").value);
+    var sen1 = Math.asin(n1);
+    var sen2 = Math.asin(n2);
+
+    alert("O seno do primeiro número é: " +sen1+ "\n ");
+}
+</script>
