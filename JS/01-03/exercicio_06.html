@@ -1,0 +1,42 @@
+<!-- 
+a) Solicite o nome do aluno
+b) Solicite a quantidade de aulas totais do curso
+c) Solicite a quantidade de aulas que o aluno faltou
+
+d) Ao clicar em "Calcular Frequência", calcule e exiba a frequência em forma de porcentagem conforme o exemplo a seguir:
+   Olá, NOME! Sua frequência foi de 90%
+--> 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" type="text/css" href="exe01.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 6</title>
+</head>
+<body>
+    <div>
+        <h1>Digite seu nome:</h1>
+        <input id="nome">
+        <h1>Quantidade de aulas totais:</h1>
+        <input id="qtd_aulas">
+        <h1>Quantidade de faltas:</h1>
+        <input id="qtd_faltas">
+        <br>
+        <button onclick="frequencia()">Calcular frequencia</button>
+    </div>
+</body>
+</html>
+<script>
+    function frequencia(){
+        var nome = document.getElementById("nome").value;
+        var aulas = Number(document.getElementById("qtd_aulas").value);
+        var faltas = Number(document.getElementById("qtd_faltas").value);
+
+        var calculo = (faltas / aulas) * 100;
+        calculo = 100 - calculo;
+
+        alert("Olá, " +nome+ "! Sua frequência foi de " +calculo+ "%");
+    }
+</script>

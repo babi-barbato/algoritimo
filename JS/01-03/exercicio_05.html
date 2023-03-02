@@ -1,0 +1,51 @@
+<!-- Um clube de futebol precisa de um programa para saber quanto arrecadou por jogo. Assim, crie um programa que:
+a) Pergunte ao usuário a quantidade de ingressos de estudante vendidos
+b) Pergunte ao usuário a quantidade de ingressos comuns vendidos
+c) Pergunte ao usuário o valor do ingresso comum
+d) Calcule a arrecadação, considerando que um ingresso de estudante custa metade do ingresso comum
+e) Exiba um alerta com uma frase assim: "A arrecadação foi de R$X"
+--> 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" type="text/css" href="exe01.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 5</title>
+</head>
+<body>
+    <div>
+        <h1>Quantidade de ingressos de estudantes vendidos?</h1>
+        <input id="qtd_estudante">
+        <h1>Quantidade de ingressos normais vendidos?</h1>
+        <input id="qtd_normal">
+        <h1>Preço do ingresso normal:</h1>
+        <input id="preco">
+        <br><br>
+        <button onclick="arrecadacao()">Calcular arrecadação</button><br>
+        <h2 id="total"></h2>
+    </div>
+</body>
+</html>
+<script>
+    function arrecadacao(){
+        var estudante = Number(document.getElementById("qtd_estudante").value);
+        var normal = Number(document.getElementById("qtd_normal").value);
+        var preco = Number(document.getElementById("preco").value);
+
+        if(estudante < 0 || normal < 0 || preco < 0){
+            alert("Digite um valor válido!");
+        }else{
+            var est = estudante;
+            var nor = normal;
+            estudante = (estudante * preco) / 2;
+            normal = normal * preco;
+            var soma = estudante + normal;
+
+            var text = document.getElementById("total");
+            text.innerHTML += ("Para " +est+ " ingrssos de estudantes e " +nor+ " ingressos normais. O preço da arrecadação foi: " +soma+ ",00 <br>");
+        }
+    }
+    
+</script>

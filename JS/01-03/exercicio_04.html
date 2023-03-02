@@ -1,0 +1,34 @@
+<!--Túlio descobriu que uma torneira pingando desperdiça de em média 15 litros de água por minuto.
+a) Pergunte quantos minutos cada torneira ficou pingando (são 3 campos de entrada, um para cada torneira)
+b) Calcule o desperdício total conforme os valores informados em a)
+c) Exiba um alerta com uma frase como esta: "Suas 3 torneiras, juntas, desperdiçaram X litros de água"
+--> 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" type="text/css" href="exe01.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 4</title>
+</head>
+<body>
+    <div>
+        <h1>Quantos minutos cada torneira ficou pingando?</h1>
+        <input id="torneira1">
+        <input id="torneira2">
+        <input id="torneira3"><br>
+        <button onclick="calculo_gasto()">Calcular desperdício</button>
+    </div>
+</body>
+</html>
+<script>
+    function calculo_gasto(){
+        var trn1 = Number(document.getElementById("torneira1").value);
+        var trn2 = Number(document.getElementById("torneira2").value);
+        var trn3 = Number(document.getElementById("torneira3").value);
+        var desperdicio = (trn1 + trn2 + trn3) * 15
+
+        alert("Suas 3 torneiras, juntas, desperdiçaram " +desperdicio+ " litros de água");
+    }
+</script>

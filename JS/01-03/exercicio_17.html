@@ -1,0 +1,60 @@
+<!--
+a) Pergunte a quantidade total de filhos menores de 18 anos
+b) Em caso de nenhum filho menor de 18 anos, exiba "Sem bolsa" e finalize. Caso
+contrário, pergunte o nome e a idade de cada filho menor de 18 anos
+c) Calcule o valor da bolsa, sendo que é de
+ 25,00 por filho entre 0 e 3 anos;
+ 20,00 por filho com mais de 3 anos até 16 anos;
+ 15,00 por filho com mais de 16 anos.
+d) Exiba o valor total da bolsa e finalize
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="caixao">
+        <label>Digite a Quantidade de filhos com mais de 18 anos:</label>
+        <input id="nume" type="text">
+        <button onclick="tota()">Clique Aqui</button>
+    </div>
+    <div id="caixote">
+        <label>Digite a idade de um filho</label>
+        <input id="idade" type="text">
+        <button onclick="idade()">Clique Aqui</button>
+    </div>
+</body>
+</html>
+<script>
+    var soma = 0;
+    var box = document.getElementById("caixao");
+    var caixa = document.getElementById("caixote");
+    caixa.style.display = "none";
+
+    function tota(){
+        qtd = document.getElementById("nume").value;
+
+        if(qtd == 0){
+            alert("Você não tem filhos menores que 18 anos!");
+        }else{
+            caixa.style.display = "block";
+            box.style.display = "none";   
+        }
+    }
+
+    function idade(){
+        var cont = 0;
+        var idade = document.getElementById("idade").value;
+
+        while(cont < qtd){    
+            soma += 1;
+            cont = cont + 1;
+        }
+
+        alert(soma);
+    }
+</script>

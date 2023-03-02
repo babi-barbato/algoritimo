@@ -1,0 +1,36 @@
+<!--Quando estão em sua "forma normal", seu "ki" é normal. Quando estão na forma Super Sayajin, seu "ki" aumenta em 50x. Quando estão na forma Super Sayajin 2, seu "ki" aumenta em 100x. Crie um programa que ajude a calcular o "ki" de um guerreiro Sayajin.
+a) Solicite o nome do guerreiro
+b) Solicite o ki normal do guerreiro
+c) Ao clicar num botão "Ver ki em cada forma", exiba um alerta para a forma Super Sayajin e outro para Super Sayajin 2, exibindo seus respectivos "ki". Em ambas exiba o nome do guerreiro também
+--> 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" type="text/css" href="exe01.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 3</title>
+</head>
+<body>
+    <div>
+        <h1>Digite seu nome guerreiro:</h1>
+        <input id="nome"><br>
+        <h1>Digite seu ki normal:</h1>
+        <input id="ki"><br>
+        <button onclick="calculo_ki()">Ver ki em cada forma</button>
+    </div>
+</body>
+</html>
+<script>
+    function calculo_ki(){
+        var nome = document.getElementById("nome").value;
+        var ki = document.getElementById("ki").value;
+
+        sayajin1 = ki * 50;
+        sayajin2 = ki * 100;
+
+        alert("Olá " +nome+ " seu ki na forma Super Sayajin é " +sayajin1);
+        alert("Olá " +nome+ " seu ki na forma Super Sayajin 2 é " +sayajin2);
+    }
+</script>

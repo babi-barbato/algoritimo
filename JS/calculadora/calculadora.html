@@ -11,8 +11,8 @@
 <div id="caixa_grande">
     <div class="caixa_media">
         <h1>Calculadora</h1>
-        <input id="vlr1"><br><br>ç;ç
-        <input id="vlr2"><br>
+        <input id="vlr1"><br><br>
+        <input id="vlr2"><br><br>
         <button onclick="soma()">Soma</button>
         <button onclick="subs()">Subtração</button>
         <button onclick="divisao()">Divisão</button>
@@ -23,6 +23,8 @@
         <br><br>
     </div>
     <div class="caixa_media">
+        <p>Só aceita valores entre -1 e 1</p>
+        <input id="vlr3"><br><br>
         <button onclick="sen()">Seno</button>
         <button onclick="cos()">Cosseno</button>
         <button onclick="tng()">Tangente</button>
@@ -76,11 +78,13 @@ function media(){
     alert("A média dos dois números é: " + resultado);
 }
 function sen(){
-    var n1 = Number(document.getElementById("vlr1").value);
-    var n2 = Number(document.getElementById("vlr2").value);
-    var sen1 = Math.asin(n1);
-    var sen2 = Math.asin(n2);
+    var n3 = Number(document.getElementById("vlr3").value);
+    var sen1 = Math.sin(n3);
 
-    alert("O seno do primeiro número é: " +sen1+ "\n ");
+    if(n3 > -1 && n3 < 1){
+        alert("O seno é: " +sen1);
+    }else{
+        alert("Digite um valor válido")
+    }
 }
 </script>

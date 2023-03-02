@@ -1,0 +1,42 @@
+<!--
+a) Pergunte o valor de 3 notas
+b) Ao clicar num botão "Analisar desempenho", calcule a média entre as notas e exiba
+na tela a frase "Sua média foi de X", onde X é a média calculada
+c) Somente caso a média for acima de 9,4 exibir também a frase "Parabéns, você é fora
+de série!"
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 3</title>
+</head>
+<body>
+    <div id="caixao">
+        <label>Digite as suas três notas: </label><br><br>
+        <input id="nota1" type="text"><br><br>
+        <input id="nota2" type="text"><br><br>
+        <input id="nota3" type="text"><br><br>
+        <button onclick="calculo()">Fazer análise</button>
+        <br><label id="lbl"></label>
+    </div>
+</body>
+</html>
+<script>
+    function calculo(){
+        var lbl = document.getElementById("lbl");
+        var n1 = Number(document.getElementById("nota1").value);
+        var n2 = Number(document.getElementById("nota2").value);
+        var n3 = Number(document.getElementById("nota3").value);
+        var media = (n1+n2+n3) / 3;
+
+        lbl.innerHTML = ("<br>Sua média foi de " +media);
+
+        if (media > 9.4){
+            lbl.innerHTML += ("<br>Parabéns! Você é fora da série");
+        }
+    }
+</script>
