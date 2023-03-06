@@ -1,0 +1,42 @@
+<!--
+a) Pergunte ao usuário sua idade.
+b) Ao clicar num botão "Ir pra festa":
+* pode acontecer de aparecer um alert com a frase "Pedir permissão pro responsável" caso a idade for
+menor que 18
+* sempre vai aparecer um alert com a palavra "#partiuFesta" ao final
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 1</title>
+</head>
+<style>
+    h1{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+    }
+</style>
+<body>
+    <h1>Digite a sua idade:</h1>
+    <input type="text" id="input_idade">
+    <br><br>
+    <button onclick="idade()">Clique Aqui</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function idade(){
+        var idade = Number(document.getElementById("input_idade").value)
+
+        if (idade < 18){
+            div_mensagem.innerHTML = `Você tem ${idade} anos, peça permição aos seus pais`
+        }else{
+            div_mensagem.innerHTML = `Você tem ${idade} partiu festa`
+        }
+    }
+
+</script>

@@ -1,0 +1,48 @@
+<!--
+Só que eles tinham um trato de que o valor da pizza, quando dividido entre os amigos, não passe de 20,00 por amigo. Ajude eles criando um programa o qual:
+a) Pergunte o valor da pizza
+b) Pergunte a quantidade de amigos reunidos
+c) Ao clicar em "Rola a pizza?", calcule e exiba o valor que cada amigo vai pagar na pizza com uma frase na página como esta "Cada amigo vai pagar R$X pela pizza"
+d) Somente caso o valor por amigo passe de R$20,00, exiba também a frase "Deu ruim! Pizza muito cara!"
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 4</title>
+</head>
+<style>
+    h1{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+    }
+</style>
+<body>
+    <h1>Quantidade de amigos:</h1>
+    <input type="text" id="input_amigos">
+    <h1>Preço da pizza:</h1>
+    <input type="text" id="input_pizza">
+    <br><br>
+    <button onclick="calcular()">Clique Aqui</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        div_mensagem.innerHTML = "";
+        var pizza = Number(document.getElementById("input_pizza").value) // variavel preço da pizza
+        var amigos = Number(document.getElementById("input_amigos").value) // variavel amigos
+        
+        var precoAmigosTotal = amigos * 20; // calcular quanto podem pagar no total
+        var precoAmigos = pizza / amigos; // calcular quanto cada um pagará
+
+        div_mensagem.innerHTML = `Cada amigo pagara R$ ${precoAmigos},00 pela pizza`
+        if(pizza > precoAmigosTotal){
+            div_mensagem.innerHTML += `<br>Deu Ruim! Pizza Muito Cara`
+        }
+    }
+
+</script>

@@ -1,0 +1,52 @@
+<!--
+    a) Solicite o saldo da conta
+    b) Solicite o valor do débito (ou seja, valor a tirar da conta)
+    c) Ao clicar em "Analisar conta", calcule o novo saldo da conta e exiba a mensagem "o saldo 
+atual da conta corrente é xx.xx". Esta frase deverá estar em negrito e em vermelho somente se o saldo for menor que zero.
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 7</title>
+</head>
+<style>
+    h1{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+    }
+    p{
+        font: bold;
+        color: red;
+    }
+</style>
+<body>
+    <h1>Saldo da conta:</h1>
+    <input type="text" id="input_saldo">
+    <h1>Valor do débito:</h1>
+    <input type="text" id="input_debito">
+    <br><br>
+    <button onclick="calcular()">Clique Aqui</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        div_mensagem.innerHTML = "";
+        var saldo = Number(document.getElementById("input_saldo").value);
+        var debito = Number(document.getElementById("input_debito").value);
+        var conta = saldo - debito;
+
+        if(conta > 0){
+            div_mensagem.innerHTML = `O saldo atual da conta corrente é R$${conta}`;
+        }
+        if(conta <= 0){
+            div_mensagem.innerHTML = `<p>O saldo atual da conta corrente é R$ ${conta}</p>`;
+        }
+    }
+
+</script>

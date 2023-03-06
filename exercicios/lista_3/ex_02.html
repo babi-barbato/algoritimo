@@ -1,0 +1,41 @@
+<!--
+a) Pergunte quantas latinhas de refrigerante toma por dia
+b) Ao clicar num botão "Quantos refris?", calcule a quantidade de refrigerante que ele consome em 1 ano, considerando que 1 ano possui 365 dias
+c) Exiba na página a quantidade de latinhas que ele consome por ano
+d) Somente caso a quantidade for a partir de 500, exiba também a frase: "Cuidado com a diabetes!"
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 2</title>
+</head>
+<style>
+    h1{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+    }
+</style>
+<body>
+    <h1>Quantas Latinha de refri por dia?</h1>
+    <input type="text" id="input_refri">
+    <br><br>
+    <button onclick="calcular()">Clique Aqui</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        var refri = Number(document.getElementById("input_refri").value)
+        refri = refri * 365;
+
+        div_mensagem.innerHTML = `Você consome ${refri} refris em um ano`
+        if(refri > 500){
+            alert("Cuidado com a quantidade de refis!");
+        }
+    }
+
+</script>
