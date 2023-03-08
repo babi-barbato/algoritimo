@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prova Bárbara</title>
+    </head>
+    <body>
+        <p>Digite seu salário</p>
+        <input type="text" id="iptSalario">
+        <br>
+        <p>Digite seu adicional mensal</p>
+        <input type="text" id="iptAdicional">
+        <br>
+        <p>Digite seu bonus</p>
+        <input type="text" id="iptBonus">
+        <br><br>
+        <button id="btnCalcular" onclick="calcular()">Analisar Minha Renda</button>
+        <br><br>
+        <h1>Análise da sua renda:</h1>
+        <div id="divAparece"></div>
+        <div id="divTalvez"></div>
+    </body>
+</html>
+<script>
+
+    function calcular(){
+        var salario= Number(iptSalario.value);
+        var bonus = Number(iptBonus.value);
+        var adicional = Number(iptAdicional.value);
+        var salarioBruto = salario + bonus + adicional;
+
+        var ir = 0;
+        var inss = 0;
+        var fgts = 0;
+        var salarioLqd = 0;
+
+        if (salarioBruto >= 10000){
+            ir = salarioBruto * 0.125;
+            salarioBruto = salarioBruto - ir;
+            inss = salarioBruto * 0.1;
+            fgts = salarioBruto * 0.08;
+            salarioLqd = (salarioBruto - inss) - fgts;
+
+            divAparece.innerHTML = `Com um sálario de <b>R$${salario}</b>, um adicional de <b>R$${adicional}</b> e bônus de <b>R$${bonus}</b>, você tem:
+            <br><b>Bruto: </b>${salario+bonus+adicional}
+            <br><b>IR: </b>${ir}
+            <br><b>INSS: </b>${inss}
+            <br><b>FGTS: </b>${fgts}
+            <br><b>Líquido: </b>${salarioLqd}`;
+            divTalvez.innerHTML = "";
+
+            var poupar = salarioLqd * 0.15;
+            var ano = poupar * 12;
+
+            divTalvez.innerHTML = `<br>Com a renda de <b>R$${salarioLqd}</b>, é recomendado poupar <b>R$${poupar},</b> para que em um ano tenha poupado <b>R$${ano}</b>`
+        }
+        
+        if(salarioBruto < 10000){
+            inss = salarioBruto * 0.1;
+            fgts = salarioBruto * 0.08;
+            salarioLqd = (salarioBruto - inss) - fgts;
+
+            if(salarioLqd > 2500){
+                var poupar = salarioLqd * 0.15;
+                var ano = poupar * 12;
+
+                divTalvez.innerHTML = `<br>Com a renda de <b>R$${salarioLqd}</b>, é recomendado poupar <b>R$${poupar},</b> para que em um ano tenha poupado <b>R$${ano}</b>`;
+            }
+            if(salarioLqd <= 2500){
+                divTalvez.innerHTML = "";
+            }
+
+            divAparece.innerHTML = `Com um sálario de <b>R$${salario}</b>, um adicional de <b>R$${adicional}</b> e bônus de <b>R$${bonus}</b>, você tem:
+            <br><b>Bruto: </b>${salario+bonus+adicional}
+            <br><b>IR: </b>${ir}
+            <br><b>INSS: </b>${inss}
+            <br><b>FGTS: </b>${fgts}
+            <br><b>Líquido: </b>${salarioLqd}`;
+        }
+    }
+
+</script>

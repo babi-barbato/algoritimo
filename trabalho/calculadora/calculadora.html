@@ -44,8 +44,8 @@
     var taxa = (diaPerdido) / (diaTotal) * 100;
     var perda = renda * (taxa/100);
     
-    texto.innerHTML = ("Sua taxa de absenteísmo é de: " +taxa+ "%");
-    texto.innerHTML +=("<br> O seu prejuízo por ano é de R$ " +perda+ ",00.")
+    texto.innerHTML = ("Sua taxa de absenteísmo é de: " +taxa.toFixed(2)+ "%");
+    texto.innerHTML +=("<br> O seu prejuízo por ano é de R$ " +perda.toFixed(2))
 
     renda.value = '';
   }
