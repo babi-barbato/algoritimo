@@ -1,0 +1,47 @@
+<!--
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Simulador de Carona</h1>
+    <p>Distancia em KM</p>
+    <input type="text" id="iptDistancia">
+    <br><br>
+    <p>Volume de Chamadas (número de 0 a 100)</p>
+    <input type="text" id="iptVolume">
+    <br><br>
+    <button onclick="calcular()">Calcular custo da viagem</button>
+    <br><br>
+    <div id="divEscondida"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        var distancia = Number(iptDistancia.value);
+        var volume = Number(iptVolume.value);
+
+        distancia += 4;
+        var valor = (distancia * 1.5);
+
+        if(volume < 20){
+            valor = valor * 0.95; //100% menos 5% = 95%
+        }
+
+        if(volume > 80){
+            valor = valor + (valor * 0.5);
+        }
+
+        var desconto = valor * 0.02;
+        var liquido = valor - desconto;
+
+        divEscondida.innerHTML = `<p>O valor final da corrida para o cliente será de R$${valor}</p>
+        <p>O valor descontado do motorista será ${desconto}, logo ele receberá um valor líquido de ${liquido}</p>`;
+    }
+</script>
