@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bárbara</title>
+    </head>
+    <body>
+        <h1></h1>
+        <p>Digite o nome do 1° time:</p>
+        <input type="text" id="iptTime1"><br><br>
+        <p>Digite o nome do 2° time:</p>
+        <input type="text" id="iptTime2"><br><br>
+        <p>Digite a quantidade de pontos do 1° time:</p>
+        <input type="text" id="iptPontos1"><br><br>
+        <p>Digite a quantidade de pontos do 2° time:</p>
+        <input type="text" id="iptPontos2"><br><br>
+        <button onclick="calcular()">Clique aqui para calcular</button>
+        <br><br><div id="divEscondida"></div>
+    </body>
+</html>
+<script>
+
+function calcular(){
+    divEscondida.innerHTML = " ";
+
+    var time1 = iptTime1.value;
+    var time2 = iptTime2.value;
+    var pontos1 = Number(iptPontos1.value);
+    var pontos2 = Number(iptPontos2.value);
+
+    if(pontos1 > 100){
+        divEscondida.innerHTML = `<b>O jogo teve muitos pontos, então é digno de ser clássico da NBA!</b>`; 
+    }
+    if(pontos2 > 100){
+        divEscondida.innerHTML = `<b>O jogo teve muitos pontos, então é digno de ser clássico da NBA!</b>`; 
+    }
+
+    var total = pontos1 + pontos2;
+
+    divEscondida.innerHTML += `<h1>ANÁLISE DA PARTIDA</h1>
+    <p>Total de pontos: ${total}</p>
+    <p>Time 1: ${pontos1}</p>
+    <p>Time 2: ${pontos2}</p>`;
+
+    if(pontos1 == pontos2){
+        divEscondida.innerHTML += "Os dois times tiveram a mesma quantidade de pontos, logo empataram";
+    }
+
+    if(pontos1 > pontos2){
+        var vantagem = pontos1 - pontos2;
+        var porcentagem = (100 * pontos1) / total;
+        var cestaDois = pontos1 / 2;
+        var cestaTres = pontos1 / 3;
+
+        divEscondida.innerHTML += `
+        <p>A vitória é do time ${time1} com uma vantagem de ${vantagem} pontos, ou seja, obteve ${porcentagem}% dos pontos totais da partida.</p>
+        <p>Com o total de ${pontos1} pontos, o time pode ter feito ${cestaDois} cestas de 2 pontos ou ${cestaTres} cestas de 3 pontos.</p>
+        `;
+
+        if(cestaTres > 30){
+            divEscondida.innerHTML += "<b>O time tem um verdadeiro cestinha!</b>";
+        }
+    }
+    if(pontos2 > pontos1){
+        var vantagem = pontos2 - pontos1;
+        var porcentagem = (100 * pontos2) / total;
+        var cestaDois = pontos2 / 2;
+        var cestaTres = pontos2 / 3;
+
+        divEscondida.innerHTML += `
+        <p>A vitória é do time ${time2} com uma vantagem de ${vantagem} pontos, ou seja, obteve ${porcentagem}% dos pontos totais da partida.</p>
+        <p>Com o total de ${pontos2} pontos, o time pode ter feito ${cestaDois} cestas de 2 pontos ou ${cestaTres} cestas de 3 pontos.</p>
+        `;
+
+        if(cestaTres > 30){
+            divEscondida.innerHTML += "<b>O time tem um verdadeiro cestinha!</b>";
+        }
+    }
+    
+}
+
+</script>
