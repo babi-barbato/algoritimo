@@ -1,0 +1,84 @@
+<!--
+a) Pergunte quantos pães franceses o usuário tem comido por dia
+b) Pergunte quantos pacotes de bolacha recheada o usuário tem comido por dia
+c) Pergunte quantos copos de achocolatado o usuário tem tomado por dia
+d) Ao clicar em "Verificar calorias", calcule quantas calorias o usuário tem consumido
+com base nas 3 informações. Considere que um pão francês tem 50 calorias, um
+pacote de bolacha, 80 e um copo de achocolatado, 70.
+e) Após fazer o cálculo, exiba uma dessas frases, abaixo do botão:
+ "Parabéns, vai sair em forma da quarentena!", caso as calorias sejam menores do
+que 200.
+ "Cuidado, vai ficar mais "fofinho(a)" após quarentena!", caso as calorias sejam entre
+200 e 400.
+ "Bom, acho que muitos não vão te reconhecer após a quarentena", caso as calorias
+sejam mais de 400.
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercício 8</title>
+    </head>
+    <style>
+        #divAparece{
+            text-align: center;
+            font-size: 18px;
+        }
+        body{
+            font-family:sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-direction: column;
+            font-size: 12px;
+        }
+        .divIpt{
+            text-align: center;
+            width: 300px;
+        }
+        input{
+            width: 100%;
+        }
+    </style>
+    <body>
+        <div class="divIpt">
+            <h1>Quantidade de pães franceces:</h1>
+            <input type="text" id="iptPao">
+        </div>
+        <div class="divIpt">
+            <h1>Quantidade de Pacotes de bolacha:</h1>
+            <input type="text" id="iptBolacha">
+        </div>
+        <div class="divIpt">
+            <h1>Quantidade de copos de achocolatado:</h1>
+            <input type="text" id="iptCopo">
+        </div>
+        <button onclick="calcular()">Verificar Calorias</button>
+        <div id="divAparece"></div>
+    </body>
+</html>
+<script>
+    function calcular(){
+        var pao = Number(iptPao.value);
+        var bolacha = Number(iptBolacha.value);
+        var copo = Number(iptCopo.value);
+        
+        pao = pao * 50;
+        bolacha = bolacha * 80;
+        copo = copo * 70;
+
+        var calorias = copo + pao + bolacha;
+        if(calorias < 200){
+            divAparece.innerHTML = `Parabéns, vai sair em forma da quarentena!`;
+        }else if(calorias < 400){
+            divAparece.innerHTML = "Cuidado, vai ficar mais 'fofinho(a)' após quarentena!";
+        }else{
+            divAparece.innerHTML = "Bom, acho que muitos não vão te reconhecer após a quarentena!";
+        }
+        divAparece.innerHTML += `<br>Suas calorias são ${calorias}`
+    }
+</script>

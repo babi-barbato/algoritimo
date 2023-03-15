@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        text-align: center;
+    }
+    input,button{
+        margin: 10px;
+    }
+</style>
+<body>
+    <h1>Digite as notas:</h1>
+    <input type="text" id="iptNota1"><br>
+    <input type="text" id="iptNota2"><br>
+    <button onclick="calcular()">Avaliar Aluno</button><br>
+    <div id="divEscondida"></div>
+</body>
+</html>
+<script>
+
+    function calcular(){
+        var nota1 = Number(iptNota1.value);
+        var nota2 = Number(iptNota2.value);
+        var media = (nota1 + nota2) / 2;
+
+        if (media >= 6){
+            divEscondida.innerHTML = `Você está acima da média, sua média é ${media}`;
+        }else{
+            divEscondida.innerHTML = `Você está abaixo da média, sua média é ${media}`;
+        }
+    }
+
+</script>

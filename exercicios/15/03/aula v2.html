@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap');
+        body{
+            font-family: "Mukta";
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; /*espaçamento entre os elementos dentro do body*/
+            flex-direction: column; /*deixar em coluna*/
+            text-align: center;
+            background-color: aquamarine;
+        }
+        input{
+            width: 100%;
+        }
+        #divGeral{
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+        }
+    </style>
+    <body>
+        <div id="divGeral">
+            <div class="divIpt">
+                <h1>Digite a sua quantidade de gols</h1>
+                <input type="text" id="iptGols">
+            </div>
+            <div class="divIpt">
+                <h1>Digite a sua quantidade de jogos</h1>
+                <input type="text" id="iptJogos">
+            </div>
+                <button onclick="calcular()">Clique Aqui</button>
+            <div id="divTexto"></div>
+        </div>
+    </body>
+</html>
+<script>
+    function calcular(){
+        var gol = Number(iptGols.value);
+        var jogo = Number(iptJogos.value);
+        var media = gol/jogo;
+
+        if(media > 0.6){
+            divTexto.innerHTML = `Você é igual o Dudu, MUITO BOM!`;
+        }else if(media >= 0.2){            
+            divTexto.innerHTML = `Você é mediano`;
+        }else{   
+            divTexto.innerHTML = `Você é igual o Roger Guedes, MUITO RUIM!`;
+            divTexto.innerHTML += "<br><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq-g-NZW2mD71J6Q89YZo6h_iMHvAdpfwD3YjUndhR&s'>";
+        }
+
+        divTexto.innerHTML += `<br>Sua média de gols é ${media.toFixed(2)}`;
+    }
+</script>
