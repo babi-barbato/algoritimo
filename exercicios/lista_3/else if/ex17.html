@@ -37,25 +37,23 @@ b) Tenha um botão "Verificar disponibilidade" que, ao ser clicado, exiba um tex
     </style>
     <body>
         <div class="divIpt">
-            <h1>Informe um Ano:</h1>
-            <input type="text" id="iptAno">
+            <h1>Distancia em KM da pizzaria a sua casa:</h1>
+            <input type="text" id="iptKm">
         </div>
-        <button onclick="calculo()">Ver Fato</button>
+        <button onclick="calculo()">Calcular</button>
         <div id="divAparece"></div>
     </body>
 </html>
 <script>
     function calculo(){
-        var ano = iptAno.value;
+        var km = iptKm.value;
 
-        if(ano < 1965){
-            divAparece.innerHTML = `No ano ${ano} o email nem havia sido criado ainda`;
-        }else if(ano == 1965){
-            divAparece.innerHTML = `No ano ${ano} o email estava sendo criado`;
-        }else if(ano < 1969){
-            divAparece.innerHTML = `No ano ${ano} o email já havia sido criado`;
+        if(km >= 25){
+            divAparece.innerHTML = `A Pizza Rãti não entrega neste endereço!`;
+        }else if(km < 5){
+            divAparece.innerHTML = `A sua pizza será entregue e não custará nada para você :)`;
         }else{
-            divAparece.innerHTML = `No ano ${ano} o email já havia sido aprimorado - Poderia ser enviado para outro computador`;
+            divAparece.innerHTML = `A sua pizza será entregue, porém o valor de entrega é de R$ 25,00`;
             
         }
     }
