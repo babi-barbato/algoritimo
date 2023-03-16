@@ -43,24 +43,12 @@ b) Tenha um botão "Verificar disponibilidade" que, ao ser clicado, exiba um tex
         </div>
         <button id="btnConcen" onclick="concentrar()">Concentrar Força</button>
         <button id="btnApanhar" onclick="apanhar()">Apanhar</button>
-        <button id="btnReset" onclick="reset()">Recomeçar</button>
         <div id="divAparece"></div>
         <img id="imgVivo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-52MZ9K_d9MyvS5Ccnnzuve4lURp-LvrCww&usqp=CAU">
         <div id="imgMorto"></div>
     </body>
 </html>
 <script>
-/*a) Tenha o seguinte texto no topo:
-Vida do Lutador: 1000
-b) Abaixo do texto tenha uma foto de um Lutador em ótima condição
-c) Tenha os botões "Apanhar" e "Concentrar força"
-d) Ao clicar no "Apanhar", a vida do Lutador reduz em 100
-e) Ao clicar no "Concentrar força", a vida do Lutador aumenta em 5%
-f) Caso a vida do lutador chegue em 0 ou menos, exibir, abaixo do texto de a) a frase
-Lutador já era! e a foto do Lutador deve mudar para o mesmo personagem, mas todo
-machucado. Enquanto não chegar em 0, sempre que apanhar ou concentrar força,
-exiba, no mesmo lugar, a frase Lutador ainda vivo!
-f) Caso a vida seja 0 ou menos, nenhum dos botões deve mais funcionar*/
 
 iptVida.value = 1000;
 btn = btnApanhar;
@@ -80,10 +68,5 @@ function concentrar(){
     }
     var aumento = iptVida.value * 0.05;
     iptVida.value = Number(iptVida.value) + aumento;
-}
-function reset(){
-    iptVida.value = 1000;
-btnApanhar.disable = False;
-btnConcen.disable = False;
 }
 </script>

@@ -1,0 +1,65 @@
+<!--
+a) Solicite o saldo da conta
+b) Solicite o valor do débito (ou seja, valor a tirar da conta)
+c) Ao clicar em "Analisar conta", calcule o novo saldo da conta e exiba a mensagem "o saldo atual da conta corrente é xx.xx". Esta frase deverá estar em negrito e em vermelho somente se o saldo for menor que zero ou em itálico e azul caso o saldo for 0 ou mais.
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercício 2</title>
+    </head>
+    <style>
+        #divAparece{
+            text-align: center;
+            font-size: 18px;
+        }
+        body{
+            font-family:sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-direction: column;
+            font-size: 12px;
+        }
+        .divIpt{
+            text-align: center;
+            width: 300px;
+        }
+        input{
+            width: 100%;
+        }
+        .vermelho{
+           color: red;
+        }
+    </style>
+    <body>
+        <div class="divIpt">
+            <h1>Saldo da conta:</h1>
+            <input type="text" id="iptSaldo">
+        </div>
+        <div class="divIpt">
+            <h1>Retirada em dinheiro:</h1>
+            <input type="text" id="iptRetirada">
+        </div>
+        <button onclick="calculo()">Calcular</button>
+        <div id="divAparece"></div>
+    </body>
+</html>
+<script>
+    function calculo(){
+        var saldo = Number(iptSaldo.value);
+        var retirada =Number(iptRetirada.value);
+
+        var conta = saldo - retirada;
+        if(conta >= 0){
+            divAparece.innerHTML = `o saldo atual da conta corrente é ${conta}`;
+        }else{
+            divAparece.innerHTML = `<p class='vermelho'>o saldo atual da conta corrente é ${conta}</p>`
+        }
+
+    }
+</script>

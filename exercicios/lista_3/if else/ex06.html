@@ -1,0 +1,46 @@
+<!--
+a) Solicita a temperatura do ambiente
+b) Ao clicar em "Verificar clima", determine se o clima está:
+* Apropriada p/ conservar alimento - Caso a temperatura for menor que 10
+* Inapropriada p/ conservar alimento - Caso a temperatura for a partir de 10
+c) Em caso de temperatura apropriada, exiba a figura de um alimento em bom estado.
+Caso contrário, exiba a imagem de um alimento estragado
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 6</title>
+</head>
+<style>
+    img{
+        width: 200px;
+    }
+    h1{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+    }
+</style>
+<body>
+    <h1>Digite a temperatura do ambiente:</h1>
+    <input type="text" id="iptTemp">
+    <button onclick="calcular()">Clique Aqui</button>
+    <br><br>
+    <div id="divMsg"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        var temp = Number(iptTemp.value);
+
+        if(temp < 10){
+            divMsg.innerHTML = "<img src='https://static.vecteezy.com/ti/vetor-gratis/p1/14347677-de-desenho-de-icone-de-perna-de-frango-comida-de-carne-vetor.jpg'>";
+        }else{
+            divMsg.innerHTML = "<img src='https://static.vecteezy.com/ti/vetor-gratis/p1/14317846-de-desenho-de-icone-de-carne-contaminada-comida-de-bacteria-vetor.jpg'>";
+        }
+
+    }
+</script>

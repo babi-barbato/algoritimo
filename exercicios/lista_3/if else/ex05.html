@@ -1,0 +1,46 @@
+<!--
+a) Solicite 2 notas de um aluno
+b) Ao clicar em "Verificar situação", calcule sua média e...
+c) Caso a média seja a partir de 6, exiba um alert com "Parabéns, aprovado!"
+d) Caso a média seja menor que 6, exiba um alert com "Tente outra vez..."
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 5</title>
+</head>
+<style>
+    h1{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+    }
+</style>
+<body>
+    <h1>Nota 1:</h1>
+    <input type="text" id="iptNota1">
+    <h1>Nota 2:</h1>
+    <input type="text" id="iptNota2">
+    <br><br>
+    <button onclick="calcular()">Clique Aqui</button>
+    <br><br>
+    <div id="divMsg"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        var n1 = Number(iptNota1.value);
+        var n2 = Number(iptNota2.value);
+
+        var media = (n1+n2) / 2;
+
+        if(media >= 6){
+            alert("Parabens, Aprovado!");
+        }else{
+            alert("Tente outra vez...");
+        }
+
+    }
+</script>
