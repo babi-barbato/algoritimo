@@ -1,0 +1,60 @@
+<!--
+a) Pergunte ao usuário o valor de seu saldo na conta do banco
+b) Ao clicar num botão "Verificar finanças"...
+    b.1) Caso o saldo em conta for igual a zero (==0), exiba esta frase na cor preta na tela: "Conta zerada".
+    b.2) Caso o saldo seja negativo (<0), exiba esta frase na cor vermelha na tela: "Está devendo!".
+    b.3) Caso o saldo seja positivo (>0), exiba esta frase na cor azul: "Saldo positivo! :)"
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 10</title>
+</head>
+<style>
+    h1{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+    }
+    p{
+        font: bold;
+        color: blue;
+    }
+    .p1{
+        font: bold;
+        color: red;
+    }
+</style>
+<body>
+    <h1>Quantidade de Homens:</h1>
+    <input type="text" id="input_homens">
+    <h1>Quantidade de Mulheres:</h1>
+    <input type="text" id="input_mulheres">
+    <br><br>
+    <button onclick="calcular()">Clique Aqui</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        div_mensagem.innerHTML = "";
+        var homem = Number(document.getElementById("input_homens").value);
+        var mulher = Number(document.getElementById("input_mulheres").value);
+        var conta = (homem * 80) + (mulher * 60);
+
+        div_mensagem.innerHTML += `Este elevador suporta 800 Kg e o peso estimado desta lotação é de ${conta}kg`;
+
+        if(conta > 800){
+            if (conta < 1000){
+                div_mensagem.innerHTML += `<p>Será necessário descer alguém para que o elevador se movimente</p>`;
+            }
+            if(conta >= 1000){
+                div_mensagem.innerHTML += `<p class='p1'>Será necessário descer alguém para que o elevador se movimente</p>`;
+            }
+        }
+    }
+
+</script>

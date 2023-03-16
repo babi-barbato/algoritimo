@@ -1,0 +1,50 @@
+<!--
+a)Tenha os botões "Pare", "Pense" e "Siga".
+b) Ao clicar no 1º, aparece na própria página, abaixo dos botões uma frase "Pare e aguarde!". Ao clicar no 2º botão, a frase a aparecer, no mesmo lugar será "Pense se pode seguir ou se deve parar!". Ao clicar no 3º botão, a frase a aparecer, no mesmo lugar será "Pode seguir adiante
+--> 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" type="text/css" href="exe01.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 1</title>
+</head>
+<body>
+    <div>
+        <h1>Clique em um dos botões abaixo</h1>
+        <button onclick="pare()">Pare</button>
+        <button onclick="pense()">Pense</button>
+        <button onclick="siga()">Siga</button>
+        <p id="parar">Pare e aguarde!</p>
+        <p id="pensar">Pense se pode seguir ou se deve parar!</p>
+        <p id="pode">Pode seguir adiante</p>
+    </div>
+</body>
+</html>
+<script>
+    var text1 = document.getElementById("parar")
+    var text2 = document.getElementById("pensar")
+    var text3 = document.getElementById("pode")
+
+    text1.style.display = "none";
+    text2.style.display = "none";
+    text3.style.display = "none";
+    
+    function pare(){
+        text1.style.display = "block";
+        text2.style.display = "none";
+        text3.style.display = "none";
+    }
+    function pense(){
+        text2.style.display = "block";
+        text1.style.display = "none";
+        text3.style.display = "none";    
+    }
+    function siga(){
+        text3.style.display = "block";    
+        text1.style.display = "none";
+        text2.style.display = "none";
+    }
+</script>
