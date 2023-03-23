@@ -1,0 +1,59 @@
+<!--
+a) Solicite o valor da renda individual do usuário
+b) Solicite o valor da renda familiar do usuário
+c) Ao clicar em "Terei o benefício", podem aparecer as seguintes mensagens:
+    "Você terá direito ao auxílio", caso renda individual for até 2000 ou caso a renda familiar for até 3000
+    "Sem direito ao auxílio", caso contrário
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="../../CSS/style_padrao.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 03</title>
+</head>
+<style>
+    #divGeral{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    p{
+        font-family: cursive;
+        font-size: 20px;
+    }
+    input{
+        width: 300px;
+    }
+</style>
+<body>
+    <div>
+        <label>Digite a sua renda:</label>
+        <input id="iptRenda">
+        <br><br>
+        <label>Digite a renda da sua família:</label>
+        <input id="iptRendaFamilia">
+        <br><br>
+        <button onclick="calcular()">Terei Beneficio</button>
+        <br><br>
+        <div id="divAparece"></div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    function calcular(){
+        var renda = document.getElementById("iptRenda").value;
+        var familia = document.getElementById("iptRendaFamilia").value;
+
+        if(renda <= 2000 || familia <= 3000){
+            divAparece.innerHTML = "Você terá direito ao auxílio";
+        }else{
+            divAparece.innerHTML = "Sem direito ao auxílio!";
+        }
+    }
+</script>

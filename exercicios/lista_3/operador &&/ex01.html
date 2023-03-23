@@ -1,0 +1,38 @@
+<!--
+a) Pergunte a temperatura atual
+b) Ao clicar em "Ver situação"...
+c) Caso a temperatura seja entre 21 e 24, exibir um alert com a frase "Temperatura confortável :)"
+d) Caso a temperatura não estiver no intervalo definido em c), exibir um alert com a frase "Temperatura DESCONFORTÁVEL :("
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="../../CSS/style_padrao.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IExercício 01</title>
+</head>
+<body>
+    <div>
+        <label>Digite a temperatura:</label>
+        <input id="iptTemp">
+        <br><br>
+        <button onclick="calcular()">Ver situação...</button>
+        <br><br>
+        <div id="divAparece"></div>
+    </div>
+</body>
+</html>
+
+<script>
+    function calcular(){
+        var temp = document.getElementById("iptTemp").value;
+
+        if(temp >= 21 && temp <= 24){
+            divAparece.innerHTML = "A temperatura está confortável :)";
+        }else{
+            divAparece.innerHTML = "Temperatura DESCONFORTÁVEL :(";
+        }
+    }
+</script>

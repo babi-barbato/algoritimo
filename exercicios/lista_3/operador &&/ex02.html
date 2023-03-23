@@ -1,0 +1,42 @@
+<!--
+a) Solicite renda do usuário
+b) Solicite a renda total familiar do usuário
+c) Ao clicar em "Verificar ajuda", exibe um alert com uma dessas mensagens "Você terá direito!", caso a renda do usuário for até 1050 e a renda familiar for até 2100. "Você NÃO terá direito", caso contrário
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="../../CSS/style_padrao.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 02</title>
+</head>
+<body>
+    <div>
+        <label>Digite a sua renda:</label>
+        <input id="iptRenda">
+        <br><br>
+        <label>Digite a renda da sua família:</label>
+        <input id="iptRendaFamilia">
+        <br><br>
+        <button onclick="calcular()">Calcular</button>
+        <br><br>
+        <div id="divAparece"></div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    function calcular(){
+        var renda = document.getElementById("iptRenda").value;
+        var familia = document.getElementById("iptRendaFamilia").value;
+
+        if(renda <= 1050 && familia <= 2100){
+            divAparece.innerHTML = "Você terá direito";
+        }else{
+            divAparece.innerHTML = "Você NÃO terá direito!";
+        }
+    }
+</script>

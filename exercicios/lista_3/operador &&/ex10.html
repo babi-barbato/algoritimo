@@ -1,0 +1,84 @@
+<!--
+a) Pergunte o intervalo da altura desejada para os próximos pilotos (altura inicial e altura final de seleção) A altura inicial tem que ser maior que 1 e a altura final tem que ser maior que a altura inicial, caso contrário emitir mensagem de alerta E NÃO SEGUIR EM FRENTE.
+b) Pergunte o nome e a altura do candidato a piloto.
+c) Emitir uma das duas mensagens abaixo sem apagar as mensagens anteriores:
+    1) “O candidato XXXXX com altura de 9,99 participará do processo de seleção de piloto”, caso a altura do candidato esteja no intervalo informado.
+    2) “Infelizmente o candidato XXXXX com altura de 9,99 não atende os requisitos”, caso a altura do candidato NÃO esteja no intervalo informado.
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="../../CSS/style_padrao.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 10</title>
+</head>
+<style>
+    #divGeral{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+    #divBox{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+    #divEsq{
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+    }
+    #divDir{
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+    }
+</style>
+<body>
+    <div id="divGeral">
+        <div id="divBox">
+            <div id="divEsq">
+                <label>Altura inicial:</label>
+                <input id="iptInicial">
+                <label>Altura final:</label>
+                <input id="iptFinal">
+            </div>
+            <div id="divDir">    
+                <label>Altura do piloto:</label>
+                <input id="iptAltura">
+                <label>Nome do piloto:</label>
+                <input id="iptNome">
+            </div>
+        </div>
+        
+        <button onclick="calcular()">Colocar Informações</button>
+        <div id="divAparece"></div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    function calcular(){
+        var altInicial = Number(document.getElementById("iptInicial").value);
+        var altFinal = Number(document.getElementById("iptFinal").value);
+        var altura = Number(document.getElementById("iptAltura").value);
+        var nome = document.getElementById("iptNome").value;
+
+
+        if(altInicial > 1 && altFinal > altInicial){
+            if(altura >= altInicial && altura <= altFinal){
+                divAparece.innerHTML = `O candidato ${nome} com altura de ${altura} participará do processo de seleção de piloto`;
+            }else{
+                divAparece.innerHTML = `O candidato ${nome} com altura de ${altura} NÃO participará do processo de seleção de piloto`;
+            }
+        }else{
+            alert("INSERIR NOVAMENTE DADOS CORRETOS");
+        }
+    }
+
+</script>

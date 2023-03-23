@@ -1,0 +1,54 @@
+<!--
+a) Solicite a quantidade de homens e mulheres num elevador
+b) Ao clicar num botão "Ligar elevador", calcule o peso total no elevador, considerando que um homem pesa em média 90kg e uma mulher 70kg
+c) Caso o peso seja menor que 500, exiba uma frase na cor verde abaixo do botão com a frase Elevador vai se mover, pois está com Xkg
+d) Caso o peso seja a partir de 500, exiba uma frase na cor vermelha abaixo do botão com a frase Alguém precisa descer. Precisa perder Xkg para mover o elevador
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 8</title>
+</head>
+<style>
+    img{
+        width: 200px;
+    }
+    h1{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+    }
+    .verde{
+        color: green;
+    }
+    .vermelho{
+        color: red;
+    }
+</style>
+<body>
+    <h1>Digite a quantidade de homens:</h1>
+    <input type="text" id="iptHomem">
+    <h1>Digite a quantidade de mulheres:</h1>
+    <input type="text" id="iptMulher">
+    <button onclick="calcular()">Ligar Elevador</button>
+    <br><br>
+    <div id="divMsg"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        var homem = Number(iptHomem.value);
+        var mulher = Number(iptMulher.value);
+        var peso = 0;
+
+        peso = (mulher * 70) + (homem * 90);
+
+        if(peso < 500){
+            divMsg.innerHTML = "<p class='verde'>O elevador irá se mover</p>"
+        }else{
+            divMsg.innerHTML = "<p class='vermelho'>O elevador não irá se mover, alguem precisa sair.</p>"
+        }
+    }
+</script>
