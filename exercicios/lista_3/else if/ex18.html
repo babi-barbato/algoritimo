@@ -53,14 +53,20 @@ b) Tenha um botão "Verificar disponibilidade" que, ao ser clicado, exiba um tex
 iptVida.value = 1000;
 btn = btnApanhar;
 var vivo = document.getElementById("imgVivo");
+
 function apanhar(){
-    if(iptVida.value <= 0){
+    if (iptVida.value > 100){
+        iptVida.value = iptVida.value - 100;
+    }else if(iptVida.value ){
+        iptVida.value = 0;
+
         vivo.style.display = "none";
         imgMorto.innerHTML = "<img src='https://e7.pngegg.com/pngimages/277/637/png-clipart-bad-piggies-angry-birds-stella-angry-birds-space-pig-talent-pig-bad-piggies-angry-birds-stella-thumbnail.png'>";
+
         btnApanhar.disable = True;
     }
-    iptVida.value = iptVida.value - 100;
 }
+
 function concentrar(){
     if(iptVida.value <= 0){
         btnConcen.disable = True;
