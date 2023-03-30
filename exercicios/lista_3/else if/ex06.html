@@ -17,11 +17,11 @@ b) Ao clicar em "Fale sobre esse time", exiba abaixo:
     </head>
     <body>
         <h1>Tive de SP que você torce:</h1>
-        <select>
-            <option>Palmeiras</option>
-            <option>São Paulo</option>
-            <option>Santos</option>
-            <option>Corinthians</option>
+        <select id="selectt">
+            <option value="p">Palmeiras</option>
+            <option value="sp">São Paulo</option>
+            <option value="s">Santos</option>
+            <option value="c">Corinthians</option>
         </select>
         <br>
         <br>
@@ -32,6 +32,15 @@ b) Ao clicar em "Fale sobre esse time", exiba abaixo:
 </html>
 <script>
     function calcular(){
-        
+
+        if(selectt.value == "p"){
+            alert("PALMEIRAS");
+        }else if(selectt.value == "sp"){
+            alert("São Paulo");
+        }else if(selectt.value == "s"){
+            alert("Santos");
+        }else{
+            alert("TIME RUIM!");
+        }
     }
 </script>

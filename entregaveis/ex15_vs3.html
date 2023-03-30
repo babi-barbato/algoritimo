@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 15</title>
+</head>
+<body>
+    <h1>Frota de Táxis</h1>
+    <p>Nome do passageiro:</p>
+    <input type="text" id="iptNome">
+    <br><br>
+    <p>Distancia em KM (apenas de 0 à 100):</p>
+    <input type="text" id="iptDistancia" oninput="funDistancia()">
+    <br><br>
+    <p>Bandeira da corrida (apenas de 1 à 3):</p>
+    <input type="text" id="iptBandeira">
+    <br><br>
+    <p>Horário de corrida:</p>
+    <input type="text" id="iptHora">
+    <br><br>
+    <button onclik="calcular()">Calcular corrida</button>
+    <br><br>
+    <div id="divEscondida"></div>
+</body>
+</html>
+<script>
+
+    function funDistancia(){
+        var distancia = Number(iptDistancia.value);
+
+        if (distancia < 0){
+            alert("Preencha corretamente a distancia");
+            iptDistancia.value = "";
+        }
+        if(distancia > 100){
+            alert("Distancia muito alta, por favor fale com a empresa!");
+            iptDistancia.value = "";
+        }
+
+    }
+
+
+    function calcular(){
+        var nome = iptNome.value; 
+        var distancia = Number(iptDistancia.value);
+        var bandeira = Number(iptBandeira.value);
+        var horas = Number(iptHora.value);
+
+        var valor = distancia * 1.25;
+        var pix = 0;
+        var dinheiro = 0;
+        var cartao = 0;
+    /*
+        if(distancia > 100){
+            alert("Viagem deve ser negociada com a central!");
+            divEscondida.innerHTML = "Favor corrigir o(s) dado(s) de entrada para seguirmos em frente";
+        }else if(distancia < 0 || distancia == ""){
+            alert("Informar corretamente a distancia!");
+            divEscondida.innerHTML = "Favor corrigir o(s) dado(s) de entrada para seguirmos em frente";
+        }else{
+            if(bandeira > 3 || bandeira < 1){
+                alert("Informar corretamente a bandeira!");
+                divEscondida.innerHTML = "Favor corrigir o(s) dado(s) de entrada para seguirmos em frente";
+            }else{
+                if(horas > 23 || horas < 0 || horas == ""){
+                    alert("Informar corretamente as horas!");
+                    divEscondida.innerHTML = "Favor corrigir o(s) dado(s) de entrada para seguirmos em frente";
+                }else{
+
+                    if(bandeira == 1 && horas <= 6){
+                        valor = valor + (valor * 0.075); 
+
+                    }else if((bandeira == 1 && horas <= 12) || (bandeira == 2 && horas <= 6)){
+                        valor = valor + (valor * 0.10); 
+
+                    }else if (bandeira == 1 && horas <= 23){
+                        valor = valor + (valor * 0.125);
+
+                    }else if((bandeira == 2 && horas <= 12) || (bandeira == 3 && horas <= 6) ){
+                        valor = valor + (valor * 0.15);  
+
+                    }else if(bandeira == 2 && horas <= 23){
+                        valor = valor + (valor * 0.20);  
+
+                    }else if(bandeira == 3 && horas <= 12){
+                        valor = valor + (valor * 0.30);  
+
+                    }else{
+                        valor = valor + (valor * 0.45);  
+                    }
+
+                    dinheiro = valor;
+                    pix = valor - (valor * 0.025);
+                    cartao = valor + (valor * 0.035)
+
+                    divEscondida.innerHTML = `Olá, ${nome}.<br>`
+                    divEscondida.innerHTML += `Se você efetuar o pagamento com PIX a corrida será de <b>R$${pix}</b>`;
+                    divEscondida.innerHTML += `<br>Se você efetuar o pagamento em dinheiro a corrida será de <b>R$${dinheiro}</b> (favor facilitar o troco)`;
+                    divEscondida.innerHTML += `<br>Se você efetuar o pagamento com cartão (débito ou crédito) a corrida será de <b>R$${cartao}</b>`;
+                }
+            }
+        }*/
+    }
+</script>
