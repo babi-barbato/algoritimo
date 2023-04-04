@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controlar Economias</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300&family=Noto+Sans:wght@300&display=swap');
+    *{
+        font-family: 'Noto Sans';
+    }
+    #divTela3{
+        display: none;
+    }
+    h1{
+        margin: 0;
+        font-size: 20px;
+    }
+    #divTela1{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    #divTela2{
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    input{
+        font-weight: 600;
+        width: 300px;
+    }
+    button{
+        width: 300px;
+    }
+</style>
+<body>
+    <div id="divTela1">
+        <div>
+            <h1>Nome do Usuário:</h1>
+            <input id="iptNome" >
+        </div>
+        <div>
+            <h1>Objetivo:</h1>
+            <input id="iptObjetivo">
+        </div>
+        <div>
+            <h1>Valor do Objetivo:</h1>
+            <input id="iptValor">
+        </div>
+        <button onclick="tela1()">Avançar</button>
+    </div>
+    <div id="divTela2">
+        <h1 id="h1Texto"></h1>
+        <button onclick="guardar()">Guardar</button>
+        <button onclick="retirar()">Retirar</button>
+    </div>
+    <div id="divTela3">
+
+    </div>
+</body>
+</html>
+<script>
+    var nome = "";
+    var objetivo = "";
+    var valor = 0;
+    var contGuardar = 0;
+    var contRetirar = 0;
+
+    function tela1(){
+        var cont = 0;
+        nome = iptNome.value;
+        objetivo = iptObjetivo.value;
+        valor = Number(iptValor.value);
+
+        //Verificar Nome
+        if (nome.length < 5){
+            alert("Nome Pequeno");
+            iptNome.value = "";
+            cont++;
+        }
+        
+        //Verificar Objetivo
+        if(objetivo.startsWith("Comprar")||objetivo.startsWith("Adquirir")||objetivo.startsWith("Importar")||objetivo.startsWith("Arrendar")){
+        }else{
+            alert("Objetivo incorreto! \nFavor começar com “Comprar”, “Adquirir”, “Importar” ou “Arrendar” ");
+            iptObjetivo.value = "";
+            cont++;
+        }
+        
+        //Verificar Valor do Objetivo
+        if(valor < 100){
+            alert("Vamos lá... Você quer poupar ou não!!!");
+            iptValor.value = "";
+            cont++;
+        }else if(valor > 1000){
+            alert("Calma.... esse valor é só quando você estiver estagiando");
+            iptValor.value = "";
+            cont++;
+        }
+        
+        //se td for preenchido corretamente, "cont" continuará como 0
+        if (cont == 0){
+            divTela1.style.display = "none";
+            divTela2.style.display = "flex";
+            h1Texto.innerHTML = `Sr(a) ${nome}  Você tem guardado: R$0.00`;
+        }else{
+            alert("Coloque os dados corretamente antes de prosseguir!");
+        }
+    }
+    
+    
+    var valor2 = 0;
+    function guardar(){
+        valor2 += 5;
+        h1Texto.innerHTML = `Sr(a) ${nome}  Você tem guardado: R$${valor2}`;
+    }
+    
+    function retirar(){
+        valor2 -= 10;
+        h1Texto.innerHTML = `Sr(a) ${nome}  Você tem guardado: R$${valor2}`;
+    }
+</script>
