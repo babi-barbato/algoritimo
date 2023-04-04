@@ -18,6 +18,9 @@
         margin: 0;
         font-size: 20px;
     }
+    p{
+        margin: 0;
+    }
     #divTela1{
         display: flex;
         flex-direction: column;
@@ -30,9 +33,15 @@
         gap: 20px;
         align-items: center;
     }
+    #divTela3{
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
     input{
         font-weight: 600;
-        width: 300px;
+        width: 400px;
     }
     button{
         width: 300px;
@@ -46,6 +55,8 @@
         </div>
         <div>
             <h1>Objetivo:</h1>
+            <p>Tem que começar com uma das seguintes palavras:</p>
+            <p>Comprar, Adquirir, Importar ou Arrendar. </p>
             <input id="iptObjetivo">
         </div>
         <div>
@@ -58,19 +69,24 @@
         <h1 id="h1Texto"></h1>
         <button onclick="guardar()">Guardar</button>
         <button onclick="retirar()">Retirar</button>
+        <p id="pTexto"></p>
     </div>
     <div id="divTela3">
-
+        <h1>Resumo da Jornada</h1>
+        <p id="pTextoJornada"></p>
+        <button onclick="reiniciar()">Reiniciar</button>
     </div>
 </body>
 </html>
 <script>
-    var nome = "";
-    var objetivo = "";
-    var valor = 0;
-    var contGuardar = 0;
-    var contRetirar = 0;
+    var nome = ""; //nome digitado pelo usuário
+    var objetivo = ""; //objetivo digitado pelo usuário
+    var valor = 0; //valor digitado pelo usuário
+    var contGuardar = 0; //contador para qnt vezes clicou em guardar
+    var contRetirar = 0; //contador para qnt vezes clicou em retirar
+    var valor2 = 0; //valor para usar como medida na 2° tela
 
+    //função para vereficar tudo na primeira tela
     function tela1(){
         var cont = 0;
         nome = iptNome.value;
@@ -86,6 +102,7 @@
         
         //Verificar Objetivo
         if(objetivo.startsWith("Comprar")||objetivo.startsWith("Adquirir")||objetivo.startsWith("Importar")||objetivo.startsWith("Arrendar")){
+            //não tem nada aq, pois está correto
         }else{
             alert("Objetivo incorreto! \nFavor começar com “Comprar”, “Adquirir”, “Importar” ou “Arrendar” ");
             iptObjetivo.value = "";
@@ -113,15 +130,74 @@
         }
     }
     
-    
-    var valor2 = 0;
+    //função que ocorre quando aperta o botão guardar da 2° tela
     function guardar(){
+        contGuardar ++;
         valor2 += 5;
         h1Texto.innerHTML = `Sr(a) ${nome}  Você tem guardado: R$${valor2}`;
+       
+        if(valor2 >= valor){
+            tela3();
+        }
+        verificacoes();
     }
     
+    //função que ocorre quando aperta o botão retirar da 2° tela
     function retirar(){
+        contRetirar ++;
         valor2 -= 10;
         h1Texto.innerHTML = `Sr(a) ${nome}  Você tem guardado: R$${valor2}`;
+        verificacoes();
+    }
+    
+    //função para verificar as coisas da 2° tela, crio separadamente para não repitir nenhuma informação
+    function verificacoes(){
+        if(valor2 >= 0){
+            pTexto.style.color = "blue";
+            pTexto.innerHTML = `Finanças OK! – continue assim para atingir o objetivo`;
+        }
+        if(valor2 > 80){
+            pTexto.style.color = "blue";
+            pTexto.innerHTML = `MUITO BEM!!! - você está próximo do objetivo`;
+        }
+        if (valor2 < 0){
+            pTexto.style.color = "red";
+            pTexto.innerHTML = `Finanças em perigo!`;
+        }
+        if (valor2 < -20){
+            pTexto.style.color = "red";
+            pTexto.innerHTML = `${nome} quase no SERASA!`;
+        }
+    }
+
+    function tela3(){
+        alert(`PARABENS, ${nome}!!! você atingiu a meta de R$${valor} e agora poderá ${objetivo}`);
+        
+        divTela2.style.display = "none";
+        divTela3.style.display = "flex";
+
+        pTextoJornada.innerHTML += `<b>Nome:</b> ${nome}`;
+        pTextoJornada.innerHTML += `<br><b>Objetivo:</b> ${objetivo}`;
+        pTextoJornada.innerHTML += `<br><b>Valor Guardado:</b> ${valor2}`;
+        pTextoJornada.innerHTML += `<br><b>Quantidade de Depósitos:</b> ${contGuardar}`;
+        pTextoJornada.innerHTML += `<br><b>Quantidade de Retiradas:</b> ${contRetirar}`;
+        pTextoJornada.innerHTML += `<br><b>Se você não tivesse feito retiradas você teria hoje R$:</b> ${contGuardar * 5}`;
+
+    }
+    
+    //função para reiniciar tudo
+    function reiniciar(){
+        divTela3.style.display = "none";
+        divTela1.style.display = "flex";
+
+        //zerando contadores e apagando textos
+        pTexto.innerHTML = "";
+        pTextoJornada.innerHTML = "";
+        iptNome.value = ""; 
+        iptObjetivo.value = ""; 
+        iptValor.value = "";
+        contGuardar = 0; 
+        contRetirar = 0; 
+        valor2 = 0;
     }
 </script>
