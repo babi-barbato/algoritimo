@@ -1,0 +1,88 @@
+<!--
+a) Pergunte de quantos em quantos dias o usuário faz musculação (é só uma informação, só 1 número, ok?)
+b) Ao clicar em "Exibir rotina mensal", mostre uma sequência de 30 frases, como neste exemplo:
+    Dia 1 - Musculação
+    Dia 2 - Comer, dormir etc
+    Dia 3 - Comer, dormir etc
+    Dia 4 - Musculação
+    Dia 5 - Comer, dormir etc
+    Dia 6 - Comer, dormir etc
+    Dia 7 - Musculação
+    ...
+    Dia 30 - Comer, dormir etc
+O Dia 1 sempre é de "Musculação"
+Considere que, nesse exemplo, o usuário informou 3 no item a)
+
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercício 12</title>
+    </head>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 500px;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        input{
+            width: 350px;
+        }
+        button{
+            width: 310px;
+        }
+        h1{
+            margin: 2px;
+            font-size: 17px;
+        }
+    </style>
+    <body>
+        <div>
+            <h1>Quantos em quantos dias fará musculação:</h1>
+            <input type="text" id="iptDias">
+        </div>
+        <button onclick="calculo()">Calcular</button>
+        <p id="texto"></p>
+    </body>
+</html>
+
+<script>
+    function calculo(){
+        texto.innerHTML = "";
+
+        var dias = iptDias.value;
+        var resto = (dias * 100) % 100;
+        var cont = 1;
+        var geral = 30;
+        
+        if (resto > 0){
+            alert("Digite um número inteiro");
+        }else{
+
+            while(cont <= geral){//while para repetir os 30 dias
+
+                var cont2 = 0; //contador usado no segundo while                   
+                texto.innerHTML += `<br><b>${cont}° Dia - Musculção</b>`;
+                
+                while(cont2 < dias - 1){
+                    cont++ //muda o contador geral para q acabada volta nesse while "conte" uma volta lá tbm
+
+                    if(cont >= 31){ //se for >= a 31 para de realizar a conta (para os dias acabarem no 30)
+                    }else{
+                        texto.innerHTML += `<br>${cont}° Dia - Descanço`;
+                    }
+
+                    cont2++;//atualiza esse contador              
+                }
+
+                cont ++;
+            }
+        }
+    }
+</script>

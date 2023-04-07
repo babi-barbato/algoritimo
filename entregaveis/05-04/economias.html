@@ -92,7 +92,13 @@
         nome = iptNome.value;
         objetivo = iptObjetivo.value;
         valor = Number(iptValor.value);
-
+/*
+        if (valor != Number){
+            alert("Digite um valor NUMÉRICO no campo do valor do objetivo");
+            iptValor.value = "";
+            cont ++;
+        }
+*/
         //Verificar Nome
         if (nome.length < 5){
             alert("Nome Pequeno");

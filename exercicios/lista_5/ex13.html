@@ -1,0 +1,77 @@
+<!--
+a) Pergunte ao usuário quantas pessoas, vão entrar no carro
+b) Ao clicar num botão "#Partiu Carona"...
+c) Exiba, debaixo do botão, frases como estas:
+    * Entrou o 1º passageiro (que é o(a) motorista)
+    * Entrou o 2º passageiro
+    * Entrou o 3º passageiro
+    * Entrou o 4º passageiro
+    * Entrou o 5º passageiro
+    * O 6º passageiro terá que esperar!
+    * O 7º passageiro terá que esperar!
+d) Note que, sempre na frase do 1º passageiro, deve constar ao lado que é motorista
+e) A partir do 6º passageiro, a frase muda, pois o carro só comporta 5 passageiros
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercício 13</title>
+    </head>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 500px;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        input{
+            width: 350px;
+        }
+        button{
+            width: 310px;
+        }
+        h1{
+            margin: 2px;
+            font-size: 17px;
+        }
+    </style>
+    <body>
+        <div>
+            <h1>Quantas pessoas vão entrar no carro:</h1>
+            <input type="text" id="iptPessoas">
+        </div>
+        <button onclick="calculo()">Partiu Carona</button>
+        <p id="texto"></p>
+    </body>
+</html>
+
+<script>
+    function calculo(){
+        texto.innerHTML = "";
+        
+        var pessoas = iptPessoas.value;
+        var resto = (pessoas * 100) % 100;
+        var cont = 1;
+        
+        if (resto > 0){
+            alert("Digite um número inteiro");
+        }else{
+            texto.innerHTML += `<br><b>Entrou o 1º passageiro (que é o(a) motorista)</b>`;
+            while(cont < pessoas){
+
+                if(cont < 5){
+                    texto.innerHTML += `<br><b>Entrou o ${cont+1}º passageiro</b>`;
+                }else{
+                    texto.innerHTML += `<br><b>${cont+1}º passageiro devera esperar!</b>`;
+                }
+                
+                cont ++;
+            }
+        }
+    }
+</script>

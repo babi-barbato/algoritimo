@@ -1,12 +1,5 @@
 <!--
-Crie um programa que vá contando a idade do usuário e descrevendo sua fase na vida, considerando que:
-- Primeira Infância: 0 a 4 anos
-- Pré-escolar: + de 4 aos 6 anos
-- Segunda Infância: + de 6 aos 10 anos
-- Adolescência: + de 10 aos 18 anos
-- Adulto: + de 18 até os 50 anos
-- Melhor idade: + de 50 anos até 100 anos
-- Matusalém: + de 100 anos
+Elefantes
 -->
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -42,27 +35,33 @@ Crie um programa que vá contando a idade do usuário e descrevendo sua fase na 
             <input type="text" id="iptElefante">
         </div>
         <button onclick="calculo()">Atazanar a médium</button>
-        <div id="divAparece"></div>
+        <p id="texto"></p>
     </body>
 </html>
 
 <script>
     function calculo(){
-        divAparece.innerHTML = "";
 
         var elefante = iptElefante.value;
         var resto = (elefante * 100) % 100;
-        var cont = 0;
-
+        var cont = 1;
+        
         if (resto > 0){
             alert("Digite um número inteiro");
         }else{
-            while(cont <= idade){
+            while(cont < elefante){
+                var cont2 = 0;
+                texto.innerHTML += "<br>1 elefante incomoda muita gente<br><br>";
+                texto.innerHTML += `${cont + 1} elefantes `;
                 
+                while(cont2 < cont + 1){
+                    texto.innerHTML += `incomodam `;
+                    cont2++
+                }
 
-
-
-                cont++;
+                texto.innerHTML += `muito mais!<br>`;
+                cont ++;
+                
             }
         }
     }
