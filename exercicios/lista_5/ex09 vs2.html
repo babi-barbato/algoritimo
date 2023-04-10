@@ -25,7 +25,7 @@ em azul.
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Exercício 8</title>
+        <title>Exercício 9</title>
     </head>
     <style>
         .azul{
@@ -34,37 +34,37 @@ em azul.
         .vermelho{
             color: red;
         }
+        p{
+            margin: 0;
+        }
     </style>
     <body>
         <div>
             <h1>Qual tabuada quer ver:</h1>
-            <input id="selectNum">
-        </div>
-
-        <div>
-            <h1>Até que número ela deve ser construida:</h1>
             <input type="text" id="iptNum">
         </div>
-
+        <div>
+            <h1>Até que número ela deve ser construida:</h1>
+            <input id="selectNum">
+        </div>
+    
         <button onclick="calculo()">Ver Tabuada</button>
-
-        <b id="divAparece"></b>
+        <br>
+        <div id="divAparece"></div>
     </body>
 </html>
 
 <script>
-    var conta = 1;
     function calculo(){
         var numTabuada = iptNum.value;
         var limite = selectNum.value;
-        while(conta <= limite){    
-            if(conta % 2 == 0){
-                divAparece.innerHTML += `<p class='azul'>${numTabuada} X ${conta} = ${numTabuada * conta} </p><br>`;
-            }else{
-                divAparece.innerHTML += `<p class='vermelho'>${numTabuada} X ${conta} = ${numTabuada * conta} </p><br>`;
-            }
 
-            conta++;
+        for(var i = 1; i <= limite; i++){    
+            if(i % 2 == 0){
+                divAparece.innerHTML += `<p class='azul'>${numTabuada} X ${i} = ${numTabuada * i} </p><br>`;
+            }else{
+                divAparece.innerHTML += `<p class='vermelho'>${numTabuada} X ${i} = ${numTabuada * i} </p><br>`;
+            }
         }
 }
 </script>
