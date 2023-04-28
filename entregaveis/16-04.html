@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício dia 16/04</title>
+</head>
+    <style>
+        #divForm{
+            background-color: rgb(71, 131, 214);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h1{
+            margin: 0;
+            padding: 0;
+            font-size: 25px;
+        }
+        input{
+            width: 450px;
+            height: 20px;
+        }
+        button{
+            width: 450px;
+            height: 25px;
+            font-size: 18px;
+        }
+    </style>
+    <body>
+        <div id="divForm">
+            <h1>Digite o limite superior da amostragem</h1>
+            <input type="text" id="iptLimiteSuperior">
+            <br>
+            <h1>Digite o limite inferior da amostragem</h1>
+            <input type="text" id="iptLimiteInferior">
+            <br>
+            <h1>1° Número para teste</h1>
+            <input type="text" id="iptNum1">
+            <br>
+            <h1>2° Número para teste</h1>
+            <input type="text" id="iptNum2">
+            <br>
+            <button onclick="calcular()">Mostrar</button>
+            <div id="divAparece"></div>
+            <div id="divAnalise"></div>
+        </div>
+    </body>
+</html>
+<script>
+    function calcular(){
+        //Apagando conteudos das divs
+        divAnalise.innerHTML = "";
+        divAparece.innerHTML = "";
+
+        //Criando Variáveis
+        var ax_Num1 = Number(iptNum1.value);
+        var ax_Num2 = Number(iptNum2.value);
+        var ax_Inferior = Number(iptLimiteInferior.value);
+        var ax_Superior = Number(iptLimiteSuperior.value);
+        var ax_verifica = 0; //variavel para verificar se algum campo foi digitado incorretamente
+        var ax_verifica2 = 0; //variavel para verificar se os numeros foram divisiveis
+        var ax_somaTotal = 0;
+        var ax_SomaNum1 = 0; //variavel que soma a qtd de vezes que apareceu o 1° número
+        var ax_SomaNum2 = 0; //variavel que soma a qtd de vezes que apareceu o 2° número
+        var ax_ultimoNumero = 0; // variavel que mostra o ultimo número digitado (maior)
+
+        //Verificações dos campos
+        if(ax_Inferior >= ax_Superior){
+            alert("Limite inferior deve ser MENOR que o Superior");
+            ax_verifica = ax_verifica + 1;
+            iptLimiteInferior.value = "";
+        }
+        if(ax_Inferior < 20){
+            alert("Limite inferior tem que ser maior que 20");
+            ax_verifica = ax_verifica + 1;
+            iptLimiteInferior.value = "";
+        }
+        if(ax_Superior > 1000){
+            alert("Limite superior tem que ser menor que 1000");
+            ax_verifica = ax_verifica + 1;
+            iptLimiteSuperior.value = "";
+        }
+        if(ax_Num1 < 3 || ax_Num1 > 20){
+            alert("O número 1 deve estar entre 3 e 20");
+            ax_verifica = ax_verifica + 1;
+            iptNum1.value = "";
+        }
+        if(ax_Num2 < 3 || ax_Num2 > 20){
+            alert("O número 2 deve estar entre 3 e 20");
+            ax_verifica = ax_verifica + 1;
+            iptNum2.value = "";
+        }
+        if(ax_Num1 == ax_Num2){
+            alert("Os dois números devem ser difertentes");
+            ax_verifica = ax_verifica + 1;
+            iptNum1.value = "";
+            iptNum2.value = "";
+        }
+
+        //Se tudo for preenchido corretamente acontecera:
+        if(ax_verifica == 0){
+
+            for(var i = ax_Inferior; i <= ax_Superior; i++){
+                if(i % ax_Num1 == 0 && i % ax_Num2 == 0){
+                    divAparece.innerHTML += `<br>O número ${i} é divisível pelo 1° e pelo 2° número`;
+                    ax_verifica2++;
+                    ax_SomaNum1++;
+                    ax_SomaNum2++;
+                    ax_somaTotal += i;
+                    ax_ultimoNumero = i;
+                }else if(i % ax_Num1 == 0){
+                    divAparece.innerHTML += `<br>O número ${i} é divisível pelo 1° número`;
+                    ax_verifica2++;
+                    ax_SomaNum1 ++;
+                    ax_somaTotal += i;
+                    ax_ultimoNumero = i;
+                }else if(i % ax_Num2 == 0){
+                    divAparece.innerHTML += `<br>O número ${i} é divisível pelo 2° número`;
+                    ax_verifica2++;
+                    ax_SomaNum2++;
+                    ax_somaTotal += i;
+                    ax_ultimoNumero = i;
+                }
+            }
+
+            if(ax_verifica2 == 0){
+                divAparece.innerHTML += "***Não foram encontrados números divisíveis***";
+            }else{
+                divAnalise.innerHTML += `
+                <br><b>Quantidade de números exibidos:</b> ${ax_verifica2}
+                <br><b>Média dos números exibidos:</b> ${ax_somaTotal/ax_verifica2}
+                <br><b>Maior número exibido:</b> ${ax_ultimoNumero}`;
+
+                if(ax_SomaNum1 == ax_SomaNum2){
+                    divAnalise.innerHTML += `<br><b>Menos número exibido:</b> Os dois números foram exibidos a mesma quantidade`;
+                }else if(ax_SomaNum1 > ax_SomaNum2){
+                    divAnalise.innerHTML += `<br><b>Menos número exibido:</b> ${ax_Num2}`;
+                }else{
+                    divAnalise.innerHTML += `<br><b>Menos número exibido:</b> ${ax_Num1}`;
+                }
+            }
+        }
+    }
+</script>
