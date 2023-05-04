@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frezza School</title>
+</head>
+<style>
+    /*Padrão Corpo*/
+    *{font-family: Arial, Helvetica, sans-serif;}
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-image: linear-gradient(95deg, #d452ec 0, #bb49ef 16.67%, #9d42f1 33.33%, #783cf2 50%, #3f39f3 66.67%, #0038f5 83.33%, #0039f6 100%);
+        justify-content: center;
+    }
+
+    /*Div*/
+    #divManutencao{
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+        margin-top: 20px;
+        border: 5px solid black;
+        padding: 50px;
+        border-radius: 40px;
+    }
+    #divAjuste, #divConsulta{
+        display: none;
+        flex-direction: column;
+        background-color: white;
+        gap: 30px;
+        text-align: center;
+        margin-top: 20px;
+        border: 5px solid black;
+        padding: 50px;
+        border-radius: 40px;
+    }
+    #divManutencao > .divInputs{
+        display: flex;
+        gap: 60px;
+    }
+    #divManutencao > .divInputs > div,
+    .divAlterar div{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .divBtns{
+        display: flex;
+        justify-content: space-between;
+    }
+    .divAlterar{
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    /*Letras*/
+    h1, p {
+        margin: 0;
+        padding: 0;
+    }
+    p{
+        font-size: 20px;
+    }
+
+    /*Input*/
+    input{
+        width: 150px;
+        font-size: 15px;
+        padding: 8px;
+    }
+
+    /*Button*/
+    button{/*Todos os Botões*/
+        border-radius: 10px;
+        font-size: 20px;
+        border: none;
+        width: 220px;
+        height: 40px;
+        color:white;
+        background-color: #9039f3;
+        cursor: pointer;
+    }
+    .divBuraco button{/*Mexendo no botão de eliminar buraco /consultar*/
+        width: 100%;
+    }
+    .divAjustar{
+        display: flex;
+        justify-content: flex-start;
+    }
+</style>
+<body>
+    <div id="divManutencao">
+        <h1>Manutenção de Notas</h1>
+        <div class="divInputs">
+            <div>
+                <p>Ra:</p>
+                <input id="iptRa" type="text">
+            </div>
+            <div>
+                <p>Nota:</p>
+                <input id="iptNota" type="text">
+            </div>
+        </div>
+        <div class="divBtns">
+            <button onclick="incluir()">Incluir</button>
+            <button onclick="excluir()">Excluir</button>
+        </div>
+        <div class="divAlterar">
+            <button onclick="alterar()">Alterar</button>
+            <div>
+                <p>Nota:</p>
+                <input type="text" id="iptNotaAlterada">
+            </div>
+        </div>
+        <div class="divBuraco">
+            <button onclick="eliminarBuraco()">Eliminar Buraco / Consultar</button>
+        </div>
+        <div class="divAjustar">
+            <button onclick="ajustar()">Ajustar Notas</button>
+        </div>
+        <div id="divVetor"></div>
+
+    </div>
+    <div id="divConsulta">
+
+    </div>
+    <div id="divAjuste">
+
+    </div>
+</body>
+</html>
+<script>
+    var vetorNotas = [];
+    var vetorRa = [];
+    var vetorNotasOficial = [];
+    var vetorRaOficial = [];
+    var ra = 0;
+    var nota = 0;
+    var erro = 0;
+    var achou = 0;
+
+    //Função para incluir nota e RA
+    function incluir(){
+        ra = Number(iptRa.value);
+        nota = Number(iptNota.value);
+        erro = 0;
+        
+        if(nota < 0 || nota > 10){
+            erro++;
+        }
+        if(ra < 2000 || ra > 3000){
+            erro++;
+        }
+        
+        //Se encontrar erro nos campos
+        if(erro != 0){
+            alert("Ra deve estar entre 2000 & 3000 \nNota deve estar entre 0 & 10");
+        }else{
+            erro = 0; //Deixo a variavel erro = 0 para usala novamente
+
+            for(var i = 0; i < vetorRa.length; i++){
+                if(vetorRa[i] == ra){
+                    alert("Já existe esse RA cadastrado");
+                    erro ++;
+                    break;
+                }
+            }
+            
+            if(erro == 0){
+                iptNota.value = "";
+                iptRa.value = "";
+                
+                vetorRa.push(ra);
+                vetorNotas.push(nota);
+                
+                lista();
+            }
+        }
+    }
+    
+    /*Função para aparecer lista dos vetores, é necessaria para não repitir for abaixo várias vezes*/
+    function lista(){
+        divVetor.innerHTML = "";
+        for(var i = 1; i <= vetorRa.length; i++){
+            divVetor.innerHTML += `Ra: ${vetorRa[(vetorRa.length) - i]} e Nota: ${vetorNotas[(vetorNotas.length) - i]}<br>`
+        }
+    }
+
+    /*Função para excluir nota e RA*/
+    function excluir(){
+        ra = Number(iptRa.value);
+        nota = Number(iptNota.value);
+        achou = 0;
+
+        for(var i = 0; i < vetorRa.length; i++){
+            if(vetorRa[i] == ra && vetorNotas[i] == nota){
+                delete vetorNotas[i];
+                // console.table([vetorNotas]);
+                delete vetorRa[i];
+                achou++;
+            }
+        }
+        
+        if(achou == 0){
+            alert("Nenhum RA foi deletado\nVerifique se preencheu corretamente o campo de notas e de RA")
+        }
+        
+        lista();
+    }
+    
+    /*Função para alterar notas*/
+    function alterar(){
+        ra = Number(iptRa.value);
+        nota = Number(iptNota.value);
+        notaAlterada = Number(iptNotaAlterada.value)
+        achou = 0;
+    
+        for(var i = 0; i < vetorRa.length; i++){
+            if(vetorRa[i] == ra && vetorNotas[i] == nota && notaAlterada >= 0 && notaAlterada <= 10){
+                vetorNotas[i] = (notaAlterada);
+                achou++;
+            }
+        }
+        iptNota.value = "";
+        iptNotaAlterada.value = "";
+        iptRa.value = "";
+
+        if(achou == 0){
+            alert("Nota NÃO foi alterada\nVerifique se preencheu corretamente todos os campos")
+        }
+        lista();
+    }
+
+    /*Função para eliminar buracos vazios*/
+    function eliminarBuraco(){
+        for(var i = 0; i < vetorNotas.length; i++){
+            if(vetorNotas[i].length == -1 && vetor){
+                //Se ele encontrou um espaço vazio não faz nada
+            }else{
+                vetorNotasOficial[i] = vetorNotas[i];
+                divVetor.innerHTML += `${vetorNotasOficial[i]}`
+            }
+        }
+        // divConsulta.style.display = "flex";
+        // divManutencao.style.display = "none";
+    }
+
+    /*Função para levar na tela de 'Ajuste de Notas'*/
+    function ajustar(){
+        divAjuste.style.display = "flex";
+        divManutencao.style.display = "none";
+    }
+
+</script>
