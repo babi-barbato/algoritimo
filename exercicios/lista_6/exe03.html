@@ -1,0 +1,51 @@
+<!-- 
+Crie um programa onde o usuário vá cadastrando os bairros para onde já morou. Ele digita o nome do lugar e vai clicar em "Cadastrar bairro". Deve haver um outro campo, onde ele digita apenas um número, indicando o local para onde morou, a partir do número 1 (porque os usuários comuns contam as coisas a partir do 1) e clica em "Relembrar moradia". Se ele informar 1, exiba o primeiro bairro cadastrado e assim por diante.
+Porém, se ele informar um número maior do que a quantidade de bairros, exiba:
+"Você ainda não morou num Xº bairro!" 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 3</title>
+</head>
+<style>
+    p{
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+    }
+</style>
+<body>
+    <p>Cadastrar Bairro</p>
+    <input type="text" id="iptBairro">
+    <button onclick="cadastrar()">Cadastrar</button>
+    <br><br>
+    <p>Ver Bairro</p>
+    <input type="text" id="iptVer">
+    <button onclick="ver()">Achar Bairro</button>
+    <div id="divAparece"></div>
+</body>
+</html>
+<script>
+    var vetor = [];
+    
+    function cadastrar(){
+        vetor.push(iptBairro.value);
+        iptBairro.value = '';
+    }
+    
+    function ver(){
+        divAparece.innerHTML = "";
+        var numDigitado = iptVer.value;
+
+        if(numDigitado > vetor.length){
+            alert("Voce ainda não morou nesse bairro");
+        }else{
+            divAparece.innerHTML = vetor[numDigitado - 1];
+        }
+        iptVer.value = '';
+    }
+</script>

@@ -1,0 +1,79 @@
+<!-- 
+Crie um programa no qual o usuário vá registrando os nomes das linhas de ônibus que ele pegou durante a semana. 
+Ele digita o nome da linha e clica em"Gravar buzão", Cada vez que o botão é clicado o programa deve mostrar a lista de
+linhas de ônibus abaixo do botão e em ordem inversa (do último para o primeiro).
+
+Deve haver outro campo onde ele pesquisa por uma linha que já tenha pego. Ao clicar
+em "Pesquisar", ele deve ver uma dessas frases, abaixo da lista de linhas de ônibus que
+já pegou:
+ Você nunca pegou essa linha (caso não tenha cadastrado ela mesmo)
+ OU
+ Você já pegou essa linha 4 vezes, nessa ordem: 2, 4, 8, 9
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 10</title>
+</head>
+<style>
+    p{
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+    }
+</style>
+<body>
+    <p>Nome da linha do onibus</p>
+    <input type="text" id="iptBus">
+    <button onclick="cadastrar()">Gravar Buzão</button>
+    <br>
+    <div id="divAparece"></div>
+    <br>
+    <input type="text" id="iptPesquisa">
+    <button onclick="ver()">Pesquisar</button>
+    <br>
+    <br>
+    <div id="divPesquisa"></div>
+</body>
+</html>
+<script>
+    var vetor = [];
+    
+    function cadastrar(){
+        divAparece.innerHTML = ``;
+        
+        vetor.push(iptBus.value);
+        for(var i = 1; i <= vetor.length; i++){
+            divAparece.innerHTML += `${vetor[(vetor.length) - i]}<br>`
+        }
+        
+        iptBus.value = '';
+    }
+    
+    function ver(){
+        divPesquisa.innerHTML = ``;
+        var cont = 0;
+        var cont2 = 1;
+
+        for(var i = 0; i < vetor.length; i++){
+            if(vetor[i] == iptPesquisa.value){
+                cont++;
+            }
+        }
+        
+        if(cont == 0){
+            divPesquisa.innerHTML += "<b>Você nunca pegou essa linha</b>";
+        }else{
+            divPesquisa.innerHTML += `<b>Você já pegou essa linha ${cont} vezes, nessa ordem</b>`;
+            for(var i = 0; i < vetor.length; i++){
+                if(vetor[i] == iptPesquisa.value){
+                    divPesquisa.innerHTML += ` ${cont2},`
+                }
+                cont2++;
+            }
+        }
+    }
+</script>

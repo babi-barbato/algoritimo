@@ -1,0 +1,51 @@
+<!-- 
+Crie um programa no qual o usuário informa os nomes dos filmes que mais gosta, começando pelo seu favorito e depois o 2º que mais gosta e assim por diante.
+Para ir cadastrando cada filme, ele clica em "Cadastrar filme".
+Crie um botão "Ver Favoritos". Ao clicar ele, exiba os filmes favoritos, abaixo, uma frase "Total: X".
+Abaixo, mostra essas frases:
+O que mais gosta é A e desses, o que menos gosta é B
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 4</title>
+</head>
+<style>
+    p{
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+    }
+</style>
+<body>
+    <p>Digite o nome do filme</p>
+    <input type="text" id="iptFilme">
+    <button onclick="cadastrar()">Cadastrar Filme</button>
+    <br><br>
+    <button onclick="ver()">Ver Filme</button>
+    <div id="divAparece"></div>
+</body>
+</html>
+<script>
+    var vetor = [];
+
+    function cadastrar(){
+        vetor.push(iptFilme.value);
+        iptFilme.value = '';
+    }
+
+    function ver(){
+        divAparece.innerHTML = "";
+
+        for(var i = 0; i < vetor.length; i++){
+            divAparece.innerHTML += `${i + 1}° Filme: ${vetor[i]}<br>`;
+        }
+        divAparece.innerHTML += `Total ${i} filmes<br>`;
+        divAparece.innerHTML += `<br>O filme que mais gosta é ${vetor[0]}<br>
+                                e o que menos gosta é ${vetor[(vetor.length) - 1]}`;
+
+    }
+</script>
