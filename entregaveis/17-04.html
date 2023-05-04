@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camisetas  SDA</title>
+</head>
+    <style>
+        #divAparece{
+            display: none;
+        }
+        #divExtrato{
+            display: none;
+        }
+        #divForm{
+            background-color: rgb(67, 178, 93);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h1{
+            margin: 0;
+            padding: 0;
+            font-size: 25px;
+        }
+        .h1Titulo{
+            font-size: 30px;
+        }
+        input{
+            width: 450px;
+            height: 20px;
+            font-size: 18px;
+        }
+        button{
+            width: 450px;
+            height: 25px;
+            font-size: 18px;
+        }
+        select{
+            width: 450px;
+            height: 25px;
+            font-size: 18px;
+        }
+    </style>
+    <body>
+        <div id="divForm">
+            <h1 class="h1Titulo">SDA – AS MELHORES CAMISETAS DO BRASIL</h1>
+            <br>
+            <h1>Digite a quantidade de camiseta solicitadas:</h1>
+            <input type="text" id="iptQtdCamiseta" placeholder="valor entre 100 e 2.000">
+            <br>
+            <h1>Tamanho da camiseta:</h1>
+            <select id="slcTamanho">
+                <option value="pequeno">Pequeno</option>
+                <option value="grande">Grande</option>
+            </select>
+            <br>
+            <h1>Selecionar o Produto:</h1>
+            <select id="slcProduto">
+                <option value="colorida">Camiseta Colorida</option>
+                <option value="branca">Camiseta Branca</option>
+            </select>
+            <br>
+            <h1>Distância para entrega:</h1>
+            <input type="text" id="iptDistancia" placeholder="valor maior que 0">
+            <br>
+            <button id="btnOrcar" onclick="calcular()">Orçar</button>
+            <div id="divAparece"></div>
+            <div id="divExtrato"></div>
+        </div>
+    </body>
+</html>
+<script>
+    function calcular(){   
+        //Apagando conteudos das divs
+        divExtrato.innerHTML = "";
+        divAparece.innerHTML = "";
+        
+        //Criando Variáveis
+        var ax_distancia = Number(iptDistancia.value);
+        var ax_produto = slcProduto.value;
+        var ax_tamanho = slcTamanho.value;
+        var ax_qtd = Number(iptQtdCamiseta.value);
+        var ax_verifica = 0;
+        var ax_preco = 0;
+        
+        //Verificando se os campos foram preenchidos corretamente
+        if(ax_distancia <= 0 ){
+            alert("Distancia deve ser maior que 0!");
+            iptDistancia.value = "";
+            ax_verifica++;
+        }
+        if(ax_qtd < 100 ){
+            alert("Vendemos somente no atacado");
+            iptQtdCamiseta.value = "";
+            ax_verifica++;
+        }
+        if(ax_qtd > 2000 ){
+            alert("Consulte nosso PCP (planejamento e controle da produção)");
+            iptQtdCamiseta.value = "";
+            ax_verifica++;
+        }
+        
+        //Se tudo for preenchido corretamente acontece:
+        if(ax_verifica == 0){
+
+            if(ax_produto == "branca" && ax_tamanho == "pequeno"){
+                ax_preco = 15;
+            }else if(ax_produto == "branca" && ax_tamanho == "grande"){
+                ax_preco = 16;
+            }else if(ax_produto == "colorida" && ax_tamanho == "pequeno"){
+                ax_preco = 17;
+            }else{
+                ax_preco = 18;
+            }
+
+            divAparece.style.display = "block"
+
+            //Aparece assim que clicar no orçar
+            divAparece.innerHTML += `
+                <h1>Orçamento de vendas</h1>
+                <br>
+                Quantidade Solicitada: ${ax_qtd}
+                <br>
+                Produto Selecionado: Camiseta ${ax_produto}
+                <br>
+                Tamanho Selecionado: ${ax_tamanho}
+                <br>
+                O valor total das mercadorias é de R$ ${(ax_qtd * ax_preco).toFixed(2)}
+            `;
+
+            //Verificando adicional da distancia
+            if(ax_distancia > 67){
+                divAparece.innerHTML += `<br>Para essa distância será cobrado um adicional de R$${((ax_qtd * ax_preco) * 0.07).toFixed(2)}`;
+            }
+
+            //Adicionando botão para ver extrato completo
+            divAparece.innerHTML += `<br><br><button onclick="extrato()">Extrato Completo</button>`;
+
+            //For que aparece no extrato completo
+            for(var i = 1; i <= ax_qtd; i++){
+                divExtrato.innerHTML += `<br>${i}° Camiseta ${ax_produto} de tamanho ${ax_tamanho}, vendida por ${ax_preco}, totalizando ${ax_preco * i}. `;
+            }
+            
+        }
+        
+    }
+
+    function extrato(){
+        divExtrato.style.display = "block";
+    }
+</script>
