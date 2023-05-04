@@ -1,0 +1,107 @@
+<!--Código desenvolvido por: Bárbar Barbato de Oliveira-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuetenção Preventiva</title>
+</head>
+<style>
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        gap:20px;
+        font-family: Noto Sans;
+    }
+    h1{
+        font-size: 28px;
+        margin: 0;
+        padding: 0;
+    }
+    .pPerguntas{
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+    }
+    input{
+        height: 20px;
+        width: 500px;
+    }
+    button{
+        height: 27px;
+        width: 508px;
+    }
+</style>
+<body>
+    <h1>Manuetenção Preventiva</h1>
+    <br>
+    <p class="pPerguntas">Quantidade de Semanas (4 - 26)</p>
+    <input type="text" id="iptSemanas">
+    <p class="pPerguntas">Quantidade de dias que ocorre a manuetenção</p>
+    <input type="text" id="iptDias">
+    <p class="pPerguntas">Quantidade de horas semanais</p>
+    <input type="text" id="iptHoras">
+    <button onclick="calcular()">Calcular</button>
+    <div id="divAparece"></div>
+    <div id="divAparece2"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        divAparece.innerHTML = "";
+        divAparece2.innerHTML = "";
+
+        var ax_semanas = Number(iptSemanas.value);
+        var ax_dias = Number(iptDias.value);
+        var ax_horas = Number(iptHoras.value);
+        var ax_verificar = 0;
+        var ax_horasDivididas = 0;
+
+        //Verificações
+        if (ax_semanas < 4 || ax_semanas > 26){
+            alert("No campo de SEMANAS, colocar um número entre 4 e 26");
+            iptSemanas.value = "";
+            ax_verificar ++;
+        }
+        if(ax_dias < 1){
+            alert("Informe corretamente a quantidade de dias da semana");
+            iptDias.value = "";
+            ax_verificar ++;
+        }
+        if(ax_dias > 6){
+            alert("A semana só tem 6 dias úteis");
+            iptDias.value = "";
+            ax_verificar ++;    
+        }
+        
+        if(ax_horas > (ax_dias * 8) || ax_horas < ax_dias){
+            alert("Quantidade de horas incompatível com a quantidade de dias semanais de manutenção")
+            iptHoras.value = "";
+            ax_verificar ++;    
+        }
+
+        /*Se tudo acontecer corretamente*/
+        if(ax_verificar == 0){
+            ax_horasDivididas = ax_horas / ax_dias;
+
+            for(var cont = 1; cont <= ax_semanas; cont++){
+                divAparece.innerHTML += `<br><b>Semana ${cont}<br></b>`;
+
+                for(var i = 1; i <= ax_dias; i++){
+                    divAparece.innerHTML += `Dia ${i} - ${ax_horasDivididas.toFixed(2)} horas - tarefas<br>`;
+                }
+            }
+
+            divAparece2.innerHTML += `Total de horas anuais para manutenção preventiva: ${ax_horas * 52}<br>`;
+            divAparece2.innerHTML += `Quantidade anual de dias para manutenção preventiva: ${ax_dias * 52}<br>`;
+            divAparece2.innerHTML += `Economia esperada em manutenção corretiva: R$${(ax_horas * 52) * 150}<br>`;
+
+        }
+
+    }
+</script>

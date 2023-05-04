@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova - Bárbara</title>
+</head>
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    input{
+        width: 300px;
+    }
+    p{
+        margin: 5px;
+        font-size: 20px;
+    }
+    button{
+        width: 310px;
+        font-size: 15px;
+    }
+    img{
+        height: 100px;
+    }
+    #divAnalise{
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<body>
+    <h1 class="h1Titulo">Criar Clones</h1>
+    <p>Digite a Quantidade de Energia:</p>
+    <input type="text" id="iptEnergia"><!--qtd de energia-->
+    <br>
+    <p>Digite a Quantidade de Clones:</p>
+    <input type="text" id="iptQtdClones"><!--qtd de clones-->
+    <br>
+    <p>Quantidade de clones por linha:</p>
+    <input type="text" id="iptClonesLinha"><!--como ficara por linha-->
+    <br>
+    <button onclick="calcular()">Criar Clones</button>
+    <br>
+    <div id="divClones"></div>
+    <div id="divAnalise"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        //Limpando divs
+        divClones.innerHTML = "";
+        divAnalise.innerHTML = "";
+
+        //Criando Variáveis
+        var ax_Energia = Number(iptEnergia.value);//Quantidade de energia
+        var ax_QtdClones = Number(iptQtdClones.value);//Quantidade de clones no total
+        var ax_QtdClonesLinha = Number(iptClonesLinha.value);//Quantidade de clones por linha
+        var ax_erro = 0;//variavel para verificar se houve algum erro
+        var ax_SobraEnergia = 0; //Quantidade de energia que sobrou
+        var ax_PercentualSobra = 0; //Percentual de energia que sobrou
+
+        //IFs de Verificações
+        if(ax_Energia < 20 || ax_Energia > 5000){
+            ax_erro++;
+        }
+        if(ax_QtdClones < 0 || ax_QtdClones > 250){
+            ax_erro++;
+        }
+        if(ax_QtdClonesLinha <= 0){
+            ax_erro++;
+        }
+
+        if(ax_erro != 0){//Se encontrar erro emitir mensagem:
+            alert("ERRO NA ENTRADA DE DADOS – Energia tem que ser entre 20 e 5.000. Quantidade de Clones tem que ser entre 0 e 250. Quantidade de Clones por linha tem que ser maior que 0");
+        }else{//se não seguir:
+            if(ax_Energia >= (ax_QtdClones * 20)){
+
+                //Loop para criar as imagens
+                for(var i = 1; i <= ax_QtdClones; i++){
+                    divClones.innerHTML += `<img src='naruto.png'>`;
+                    if(i % ax_QtdClonesLinha == 0){
+                        divClones.innerHTML += `<br>`;
+                    }
+                }
+
+                ax_SobraEnergia = ax_Energia - (ax_QtdClones * 20);
+                ax_PercentualSobra = (ax_SobraEnergia / ax_Energia) * 100;
+
+                //Analise
+                divAnalise.innerHTML +=`
+                <p><b>ANÁLISE DA GERAÇÃO DE CLONES</b></p>
+                <p>Energia Inicial: ${ax_Energia}</p>
+                <p>Qtde de Clones: ${ax_QtdClones}</p>
+                <p>Sobra de Energia: ${ax_SobraEnergia}</p>
+                <p>Sobra de Energia: ${ax_PercentualSobra}</p>
+                `;
+
+                if(ax_SobraEnergia > 1000 || ax_QtdClones > 50 || ax_PercentualSobra >= 20){
+                    divAnalise.innerHTML += `<p><b>PROVAVELMENTE VOCE VAI GANHAR</b></p>`;
+                }else if(ax_SobraEnergia > 500 || ax_QtdClones > 20 || ax_PercentualSobra > 10){
+                    divAnalise.innerHTML += `<p><b>A LUTA VAI SER MUITO BOA</b></p>`;
+                }else{
+                    divAnalise.innerHTML += `<p><b>TORÇA PARA O ADVERSÁRIO SER FRAQUINHO</b></p>`;
+                }
+
+            }else{
+                alert("A Quantidade de energia não é suficiente para a criação de todos esses clones!");
+            }
+        }
+    }
+</script>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio - Bárbara</title>
+</head>
+<style>
+    img{
+        height: 100px;
+    }
+</style>
+<body>
+    <h1 class="h1Titulo">Desafio</h1>
+    <p>Digite a quantidade de Macarons:</p>
+    <input type="text" id="iptQtdMac">
+    <br>
+    <p>Digite o preço do Macarons:</p>
+    <input type="text" id="iptPrecoMac">
+    <br>
+    <p>Digite a quantidade de Brigadeiros:</p>
+    <input type="text" id="iptQtdBri">
+    <br>
+    <p>Digite o preço do brigadeiro:</p>
+    <input type="text" id="iptPrecoBri">
+    <br>
+    <p>Digite a quantidade de Cupcakes:</p>
+    <input type="text" id="iptQtdCup">
+    <br>
+    <p>Digite o preço do Cupcakes:</p>
+    <input type="text" id="iptPrecoCup">
+    <br>
+    <p>Digite a quantidade de Cheescake:</p>
+    <input type="text" id="iptQtdChe">
+    <br>
+    <p>Digite o preço do Cheescake:</p>
+    <input type="text" id="iptPrecoChe">
+    <br>
+    <br>
+    <button onclick="calcular()">Verificar Vendas</button>
+    <br>
+    <div id="divAparece"></div>
+    <div id="divAnalise"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        //Limpando divs
+        divAparece.innerHTML = "";
+        divAnalise.innerHTML = "";
+
+        //Criando Variáveis
+        var qtdBri = Number(iptQtdBri.value);
+        var precoBri = Number(iptPrecoBri.value);
+        var qtdMac = Number(iptQtdMac.value);
+        var precoMac = Number(iptPrecoMac.value);
+        var qtdChe = Number(iptQtdChe.value);
+        var precoChe = Number(iptPrecoChe.value);
+        var qtdCup = Number(iptQtdCup.value);
+        var precoCup = Number(iptPrecoCup.value);
+        var cont = 1;
+        var total = 0;
+
+        if(qtdMac != 0){
+            for(var i = 1; i <= qtdMac; i++){
+                divAparece.innerHTML += "<br>";
+                divAparece.innerHTML += `Venda ${cont}° - <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc9sh_EJGrzJPev9w014nZhuRFglg4Nc_ij5o_e0sTeA&s'> - R$${precoMac}`;
+                divAparece.innerHTML += "<br>";
+                cont++;
+            }
+        }
+        divAparece.innerHTML += "<br>";
+        if(qtdBri != 0){
+            for(var i = 1; i <= qtdBri; i++){
+                divAparece.innerHTML += "<br>";
+                divAparece.innerHTML += `Venda ${cont}° - <img src='https://t4.ftcdn.net/jpg/01/79/69/77/360_F_179697714_3qoAmMCdrFyODihzEFD72zXADjiYnNTg.jpg'> - R$${precoBri}`;
+                divAparece.innerHTML += "<br>";
+                cont++;
+            }
+        }
+        divAparece.innerHTML += "<br>";
+        if(qtdCup != 0){
+            for(var i = 1; i <= qtdCup; i++){
+                divAparece.innerHTML += "<br>";
+                divAparece.innerHTML += `Venda ${cont}° - <img src='https://t3.ftcdn.net/jpg/01/14/82/00/360_F_114820057_FX8SItpczGKwcCOVz7UbSUxuNMMYVqKa.jpg'> - R$${precoCup}`;
+                divAparece.innerHTML += "<br>";
+                cont++;
+            }
+        }
+        divAparece.innerHTML += "<br>";
+        if(qtdChe != 0){
+            for(var i = 1; i <= qtdChe; i++){
+                divAparece.innerHTML += "<br>";
+                divAparece.innerHTML += `Venda ${cont}° - <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm-emIcGDX00uKiC3m9l1Rk881jwS50Luk7V0oFFP18A&s'> - R$${precoChe}`;
+                divAparece.innerHTML += "<br>";
+                cont++;
+            }
+        }
+        
+        total = (qtdMac * precoMac) + (qtdBri * precoBri) + (qtdCup * precoCup) + (qtdChe * precoChe)
+
+        divAnalise.innerHTML += `<br>Com a quantidade de ${qtdMac} Macarons, ${qtdBri} Brigadeiros, ${qtdCup} Cupcakes e ${qtdChe} Cheesecakes, a venda totalizará R$${total}`;
+        
+    }
+</script>
