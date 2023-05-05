@@ -191,13 +191,13 @@
             divVetor.innerHTML += `Ra: ${vetorRa[(vetorRa.length) - i]} e Nota: ${vetorNotas[(vetorNotas.length) - i]}<br>`
         }
     }
-
+    
     /*Função para excluir nota e RA*/
     function excluir(){
         ra = Number(iptRa.value);
         nota = Number(iptNota.value);
         achou = 0;
-
+        
         for(var i = 0; i < vetorRa.length; i++){
             if(vetorRa[i] == ra && vetorNotas[i] == nota){
                 delete vetorNotas[i];
@@ -220,7 +220,7 @@
         nota = Number(iptNota.value);
         notaAlterada = Number(iptNotaAlterada.value)
         achou = 0;
-    
+        
         for(var i = 0; i < vetorRa.length; i++){
             if(vetorRa[i] == ra && vetorNotas[i] == nota && notaAlterada >= 0 && notaAlterada <= 10){
                 vetorNotas[i] = (notaAlterada);
@@ -230,31 +230,34 @@
         iptNota.value = "";
         iptNotaAlterada.value = "";
         iptRa.value = "";
-
+        
         if(achou == 0){
             alert("Nota NÃO foi alterada\nVerifique se preencheu corretamente todos os campos")
         }
         lista();
     }
+    var cont = 0;
 
     /*Função para eliminar buracos vazios*/
     function eliminarBuraco(){
+        divVetor.innerHTML = ""
         for(var i = 0; i < vetorNotas.length; i++){
-            if(vetorNotas[i].length == -1 && vetor){
+            if(vetorNotas[i].length == -1 && vetorRa[i].length == -1){
                 //Se ele encontrou um espaço vazio não faz nada
             }else{
-                vetorNotasOficial[i] = vetorNotas[i];
-                divVetor.innerHTML += `${vetorNotasOficial[i]}`
+                vetorNotasOficial[cont] = vetorNotas[i];
+                divVetor.innerHTML += `Ra: ${vetorNotasOficial[cont]}<br>`
+                cont++;
             }
         }
         // divConsulta.style.display = "flex";
         // divManutencao.style.display = "none";
     }
-
+    
     /*Função para levar na tela de 'Ajuste de Notas'*/
     function ajustar(){
         divAjuste.style.display = "flex";
         divManutencao.style.display = "none";
     }
-
+    
 </script>
