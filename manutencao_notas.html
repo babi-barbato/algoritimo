@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frezza School</title>
+    <title>Frizza School</title>
 </head>
 <style>
     /*Padrão Corpo*/
@@ -18,7 +18,7 @@
     }
 
     /*Div*/
-    #divManutencao{
+    #divManutencao{/*Div da tela manutenção (tela inicial)*/
         background-color: white;
         display: flex;
         flex-direction: column;
@@ -29,7 +29,7 @@
         padding: 50px;
         border-radius: 40px;
     }
-    #divAjuste, #divConsulta{
+    #divAjuste, #divConsulta{/*Div geral da tela de ajuste e da tela de consulta*/
         display: none;
         flex-direction: column;
         background-color: white;
@@ -40,7 +40,7 @@
         padding: 50px;
         border-radius: 40px;
     }
-    #divManutencao > .divInputs{
+    #divManutencao > .divInputs{/*div que tem os inputs da tela inicial*/
         display: flex;
         gap: 60px;
     }
@@ -50,13 +50,39 @@
         gap: 10px;
         align-items: center;
     }
-    .divBtns{
+    .divBtns{/*div que tem os botões da tela inicial*/
         display: flex;
         justify-content: space-between;
     }
-    .divAlterar{
+    .divAjustar{/*div da tela inicial que tem o btn para levar a outra página*/
+        display: flex;
+        justify-content: flex-start;
+    }
+    .divAlterar{/*div de alterar o preço da tela inicial*/
         display: flex;
         justify-content: space-between;
+    }
+    .divLinhaAjuste{/*Div das linhas do bonus / redução na tela de ajuste de notas*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    #divVetor{/*Div Que aparece as notas e Ra*/
+        display: flex;
+        margin-top: 10px;
+        flex-direction: column;
+        background-color: white;
+        text-align: center;
+        border: 2px solid black;
+        border-radius: 10px;
+        padding: 5px;
+    }
+    .divIpt{/*div que na tela de consulta organiza os ipt e buttons*/
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
     }
     
     /*Letras*/
@@ -86,12 +112,11 @@
         background-color: #9039f3;
         cursor: pointer;
     }
+    #divAjuste button{
+        width: 150px;
+    }
     .divBuraco button{/*Mexendo no botão de eliminar buraco /consultar*/
         width: 100%;
-    }
-    .divAjustar{
-        display: flex;
-        justify-content: flex-start;
     }
 </style>
 <body>
@@ -124,15 +149,49 @@
         <div class="divAjustar">
             <button onclick="ajustar()">Ajustar Notas</button>
         </div>
-        <div id="divVetor"></div>
-
+        
     </div>
     <div id="divConsulta">
-
+        <h1>Tela de Consulta</h1>
+        <div class="divIpt">
+            <button onclick="verRa()">Por Ra:</button>
+            <input id="iptRaMin" type="text">
+            <p>até:</p>
+            <input id="iptRaMax" type="text">
+        </div>
+        <div class="divIpt">
+            <button onclick="verNota()">Por Nota:</button>
+            <input id="iptNotaMin" type="text">
+            <p>até:</p>
+            <input id="iptNotaMax" type="text">
+        </div>
     </div>
+    
     <div id="divAjuste">
-
+        <h1>Tela de ajuste de notas</h1>
+        <div class="divLinhaAjuste">
+            <p>RA de:</p>
+            <input type="text" id="iptRaLimiteMenor">
+            <p>até:</p>
+            <input type="text" id="iptRaLimiteMaior">
+        </div>
+        <div class="divLinhaAjuste">
+            <button onclick="bonus()">Bonus</button>
+            <p>Pontos:</p>
+            <input type="text" id="iptBonusPontos">
+            <p>ou %</p>
+            <input type="text" id="iptBonusPorcen">
+        </div>
+        <div class="divLinhaAjuste">
+            <button onclick="reducao()">Redução</button>
+            <p>Pontos:</p>
+            <input type="text" id="iptReducaoPontos">
+            <p>ou %</p>
+            <input type="text" id="iptReducaoPorcen">
+        </div>
+        
     </div>
+    <div id="divVetor"></div>
 </body>
 </html>
 <script>
@@ -144,6 +203,119 @@
     var nota = 0;
     var erro = 0;
     var achou = 0;
+    var cont = 0;//Contador usado apagar espaços
+
+    function verRa(){
+        var raMin = Number(iptRaMin.value);
+        var raMax = Number(iptRaMax.value);
+        var maiorNota = 0;
+        var menorNota = 10;
+        var media = 0;
+        var maiorNotaIntervalo = 0;
+        var menorNotaIntervalo = 10;
+        var mediaIntervalo = 0;
+        var conta = 0;
+        
+        if(raMin > raMax){
+            alert("O 1° Ra deve ser menor que o 2°");
+        }else if(raMin != 0 && raMax != 0){
+            for(var i = 0; i < vetorRaOficial.length; i++){
+                if(vetorNotasOficial[i] > maiorNota){
+                    maiorNota = vetorNotasOficial[i]
+                }
+
+                if(vetorNotasOficial[i] < menorNota){
+                    menorNota = vetorNotasOficial[i]
+                }
+
+                if((vetorRaOficial[i] <= raMax) && (vetorRaOficial[i] >= raMin)){
+                    conta++;
+
+                    divConsulta.innerHTML += `<br> ${i}° RA: ${vetorRaOficial[i]} e nota: ${vetorNotasOficial[i]}`;
+
+                    if(vetorNotasOficial[i] > maiorNotaIntervalo){
+                        maiorNotaIntervalo = vetorNotasOficial[i]
+                    }
+
+                    if(vetorNotasOficial[i] < menorNotaIntervalo){
+                        menorNotaIntervalo = vetorNotasOficial[i]
+                    }
+
+                    mediaIntervalo += vetorNotasOficial[i];
+                }
+                media += vetorNotasOficial[i];
+            }
+
+            divConsulta.innerHTML += `<br><br>Maior Nota do Vetor: ${maiorNota}
+            <br>Menor nota do Vetor: ${menorNota}
+            <br>Maior Nota do intervalo: ${maiorNotaIntervalo}
+            <br>Menor nota do intervalo: ${menorNotaIntervalo}
+            <br>Média do Vetor: ${media/vetorNotasOficial.length}
+            <br>Média do Intervalo: ${mediaIntervalo/conta}`;
+        }else{
+            alert("Preencha os dois campos do RA")
+        }
+    }
+
+    function verNota(){
+        var notaMin = Number(iptNotaMin.value);
+        var notaMax = Number(iptNotaMax.value);
+        var maiorNota = 0;
+        var menorNota = 10;
+        var media = 0;
+        var maiorNotaIntervalo = 0;
+        var menorNotaIntervalo = 10;
+        var mediaIntervalo = 0;
+        var conta = 0;
+        
+        if(notaMin > notaMax){
+            alert("O 1° Ra deve ser menor que o 2°");
+        }else if(notaMin != 0 && notaMax != 0){
+            for(var i = 0; i < vetorRaOficial.length; i++){
+                if(vetorNotasOficial[i] > maiorNota){
+                    maiorNota = vetorNotasOficial[i]
+                }
+
+                if(vetorNotasOficial[i] < menorNota){
+                    menorNota = vetorNotasOficial[i]
+                }
+
+                if((vetorNotasOficial[i] <= notaMax) && (vetorNotasOficial[i] >= notaMin)){
+                    conta++;
+
+                    divConsulta.innerHTML += `<br> ${i}° RA: ${vetorRaOficial[i]} e nota: ${vetorNotasOficial[i]}`;
+
+                    if(vetorNotasOficial[i] > maiorNotaIntervalo){
+                        maiorNotaIntervalo = vetorNotasOficial[i]
+                    }
+
+                    if(vetorNotasOficial[i] < menorNotaIntervalo){
+                        menorNotaIntervalo = vetorNotasOficial[i]
+                    }
+
+                    mediaIntervalo += vetorNotasOficial[i];
+                }
+                media += vetorNotasOficial[i];
+            }
+
+            divConsulta.innerHTML += `<br><br>Maior Nota do Vetor: ${maiorNota}
+            <br>Menor nota do Vetor: ${menorNota}
+            <br>Maior Nota do intervalo: ${maiorNotaIntervalo}
+            <br>Menor nota do intervalo: ${menorNotaIntervalo}
+            <br>Média do Vetor: ${media/vetorNotasOficial.length}
+            <br>Média do Intervalo: ${mediaIntervalo/conta}`;
+        }else{
+            alert("Preencha os dois campos do RA")
+        }
+    }
+
+    /*Função para aparecer lista dos vetores, é necessaria para não repitir for abaixo várias vezes*/
+    function lista(){
+        divVetor.innerHTML = "";
+        for(var i = 1; i <= vetorRa.length; i++){
+            divVetor.innerHTML += `Ra: ${vetorRa[(vetorRa.length) - i]} e Nota: ${vetorNotas[(vetorNotas.length) - i]}<br>`
+        }
+    }
 
     //Função para incluir nota e RA
     function incluir(){
@@ -157,7 +329,6 @@
         if(ra < 2000 || ra > 3000){
             erro++;
         }
-        
         //Se encontrar erro nos campos
         if(erro != 0){
             alert("Ra deve estar entre 2000 & 3000 \nNota deve estar entre 0 & 10");
@@ -171,7 +342,6 @@
                     break;
                 }
             }
-            
             if(erro == 0){
                 iptNota.value = "";
                 iptRa.value = "";
@@ -181,14 +351,6 @@
                 
                 lista();
             }
-        }
-    }
-    
-    /*Função para aparecer lista dos vetores, é necessaria para não repitir for abaixo várias vezes*/
-    function lista(){
-        divVetor.innerHTML = "";
-        for(var i = 1; i <= vetorRa.length; i++){
-            divVetor.innerHTML += `Ra: ${vetorRa[(vetorRa.length) - i]} e Nota: ${vetorNotas[(vetorNotas.length) - i]}<br>`
         }
     }
     
@@ -206,11 +368,9 @@
                 achou++;
             }
         }
-        
         if(achou == 0){
             alert("Nenhum RA foi deletado\nVerifique se preencheu corretamente o campo de notas e de RA")
         }
-        
         lista();
     }
     
@@ -230,28 +390,28 @@
         iptNota.value = "";
         iptNotaAlterada.value = "";
         iptRa.value = "";
-        
         if(achou == 0){
             alert("Nota NÃO foi alterada\nVerifique se preencheu corretamente todos os campos")
         }
         lista();
     }
-    var cont = 0;
 
     /*Função para eliminar buracos vazios*/
     function eliminarBuraco(){
         divVetor.innerHTML = ""
         for(var i = 0; i < vetorNotas.length; i++){
-            if(vetorNotas[i].length == -1 && vetorRa[i].length == -1){
+            if(vetorNotas[i] == undefined && vetorRa[i] == undefined){
                 //Se ele encontrou um espaço vazio não faz nada
             }else{
                 vetorNotasOficial[cont] = vetorNotas[i];
-                divVetor.innerHTML += `Ra: ${vetorNotasOficial[cont]}<br>`
+                vetorRaOficial[cont] = vetorRa[i];
+                divVetor.innerHTML += `Ra:${vetorRaOficial[cont]} Notas: ${vetorNotasOficial[cont]} <br>`
                 cont++;
             }
         }
-        // divConsulta.style.display = "flex";
-        // divManutencao.style.display = "none";
+        divVetor.style.display = "none";
+        divConsulta.style.display = "flex";
+        divManutencao.style.display = "none";
     }
     
     /*Função para levar na tela de 'Ajuste de Notas'*/
@@ -260,4 +420,139 @@
         divManutencao.style.display = "none";
     }
     
+    //Função para verificar se preencheu os campos corretamente na tela de ajuste de notas
+    var erroGeral = 0;
+    function verificarAjuste(){
+        erroGeral = 0;
+        erro = 0;
+        cont = 0;
+        var iptMenor = Number(iptRaLimiteMenor.value);
+        var iptMaior = Number(iptRaLimiteMaior.value);
+
+        if(iptMenor > iptMaior){
+            alert("O 1° Valor do RA deve ser menor que o 2° Valor");
+            cont++;
+            erroGeral++;
+        }
+        
+        if(cont == 0){
+            
+            for(var i = 0; i < vetorRa.length; i++){
+                if(vetorRa[i] == iptMenor){
+                    for(var i = 0; i < vetorRa.length; i++){
+                        if(vetorRa[i] == iptMaior){
+                            erro++;  
+                        }
+                    }
+                }
+            }
+            
+            if(erro == 0){
+                alert("Você digitou algum RA que ainda não foi cadastrado ou não existe!");
+                erroGeral++;
+            }
+            
+        }
+
+    }
+
+    /*Função para adicionar um bonus*/
+    function bonus(){
+        verificarAjuste();
+        var pontos = Number(iptBonusPontos.value);
+        var porcentagem = Number(iptBonusPorcen.value);
+        var iptMaior = Number(iptRaLimiteMaior.value);
+        var iptMenor = Number(iptRaLimiteMenor.value);
+        var novaNota = 0;
+
+        if(erroGeral == 0){
+            if((pontos != 0 && porcentagem == 0)||(pontos == 0 && porcentagem != 0)){
+                
+                if(pontos != 0){
+                    for(var i = 0; i < vetorRa.length; i++){
+                        if((vetorRa[i] <= iptMaior) && (vetorRa[i] >= iptMenor)){
+
+                            novaNota = vetorNotas[i] + pontos;
+                            
+                            if(novaNota > 10){
+                                novaNota = 10;
+                            }
+                            
+                            vetorNotas[i] = novaNota;
+                            novaNota = 0;
+                        }
+                    }
+                }else{
+                    porcentagem = porcentagem / 100;
+                    for(var i = 0; i < vetorRa.length; i++){
+                        if((vetorRa[i] <= iptMaior) && (vetorRa[i] >= iptMenor)){
+
+                            novaNota = vetorNotas[i] + (vetorNotas[i] * porcentagem);
+                            
+                            if(novaNota > 10){
+                                novaNota = 10;
+                            }
+                            
+                            vetorNotas[i] = novaNota;
+                            novaNota = 0;
+                        }
+                    }
+                }
+                lista();
+            }else{
+                alert("Selecione apenas Pontos ou Porcentagem");
+            }
+        }
+
+    }
+
+    /*Função para reduzir a nota*/
+    function reducao(){
+        verificarAjuste();
+        var pontos = Number(iptReducaoPontos.value);
+        var porcentagem = Number(iptReducaoPorcen.value);
+        var iptMaior = Number(iptRaLimiteMaior.value);
+        var iptMenor = Number(iptRaLimiteMenor.value);
+        var novaNota = 0;
+
+        if(erroGeral == 0){
+            if((pontos != 0 && porcentagem == 0)||(pontos == 0 && porcentagem != 0)){
+                
+                if(pontos != 0){
+                    for(var i = 0; i < vetorRa.length; i++){
+                        if((vetorRa[i] <= iptMaior) && (vetorRa[i] >= iptMenor)){
+
+                            novaNota = vetorNotas[i] - pontos;
+                            
+                            if(novaNota < 0){
+                                novaNota = 0;
+                            }
+                            
+                            vetorNotas[i] = novaNota;
+                            novaNota = 0;
+                        }
+                    }
+                }else{
+                    porcentagem = porcentagem / 100;
+                    for(var i = 0; i < vetorRa.length; i++){
+                        if((vetorRa[i] <= iptMaior) && (vetorRa[i] >= iptMenor)){
+
+                            novaNota = vetorNotas[i] - (vetorNotas[i] * porcentagem);
+                            
+                            if(novaNota < 0){
+                                novaNota = 0;
+                            }
+                            
+                            vetorNotas[i] = novaNota;
+                            novaNota = 0;
+                        }
+                    }
+                }
+                lista();
+            }else{
+                alert("Selecione apenas Pontos ou Porcentagem");
+            }
+        }
+
+    }
 </script>
