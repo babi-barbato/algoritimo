@@ -1,0 +1,119 @@
+<!--
+a) Deve haver apenas um botão "Jogar". Ao clicar nele, devem ser sorteados um dos 3 valores possíveis do jogo para 2 jogadores.
+b) Os valores sorteados são ilustrados na tela com imagens (de uma pedra, de um papel ou de uma tesoura, claro). Essas imagens devem aparecer abaixo do botão e uma do lado da outra. Se possível, evite que a imagens fiquem "coladas", dando um
+espaço entre elas.
+c) Abaixo das imagens, caso os valores não sejam iguais, exiba a frase Jogador X venceu porque BLA
+Onde X é 1 ou 2, dependendo do jogador que vencer e BLA é a explicação, que pode ser:
+    Pedra quebra a tesoura
+    Papel cobre a pedra
+    Tesoura corta o papel
+Em caso de empate, exibir apenas a frase
+    EMPATE! Jogue novamente!
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 1</title>
+</head>
+<style>
+    body{
+        font-family: arial;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    #divAparece{
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+    img{
+        width: 300px;
+    }
+    p{
+        font-size: 20px;
+    }
+</style>
+<body>
+    <h1>Pedra Papel Tesoura</h1>
+    <button onclick="jogar()">Jogar</button>
+    <div id="divAparece"></div>
+    <p id="pAparece"></p>
+</body>
+</html>
+<script>
+    var jogador1 = 0;
+    var jogador2 = 0;
+    
+    //1 = Tesoura, 2 = Pedra, 3 = Papel
+    function jogar(){
+        pAparece.innerHTML = ""
+        divAparece.innerHTML = ""
+        jogador1 = Math.random()
+        jogador2 = Math.random()
+        jogador1 = (jogador1 * (3-1) + 1).toFixed(0)
+        jogador2 = (jogador2 * (3-1) + 1).toFixed(0)
+        
+        if(jogador1 == 1){
+            divAparece.innerHTML += "<img src='https://static.vecteezy.com/system/resources/previews/016/314/876/non_2x/scissors-scissors-icon-transparent-free-png.png'>"
+            
+            if(jogador2 == 1){
+                divAparece.innerHTML += "<img src='https://static.vecteezy.com/system/resources/previews/016/314/876/non_2x/scissors-scissors-icon-transparent-free-png.png'>"
+
+                pAparece.innerHTML += `<br>Empate Jogue Novamente!`
+                
+            }else if(jogador2 == 2){
+                divAparece.innerHTML += "<img src='https://images.vexels.com/media/users/3/145827/isolated/preview/357f06ecbaaa77d750259c459c0ed55f-ilustracao-de-pedra-redonda.png'>"
+
+                pAparece.innerHTML += `<br>Jogador 2 Venceu! Pedra quebra Tesoura`
+            }else{
+                divAparece.innerHTML += "<img src='https://static.vecteezy.com/system/resources/previews/009/354/743/original/paper-sheet-clipart-design-illustration-free-png.png'>"
+
+                pAparece.innerHTML += `<br>Jogador 1 Venceu! Tesoura corta Papel`
+
+            }
+        }else if(jogador1 == 2){
+            divAparece.innerHTML += "<img src='https://images.vexels.com/media/users/3/145827/isolated/preview/357f06ecbaaa77d750259c459c0ed55f-ilustracao-de-pedra-redonda.png'>"
+            
+            if(jogador2 == 1){
+                divAparece.innerHTML += "<img src='https://static.vecteezy.com/system/resources/previews/016/314/876/non_2x/scissors-scissors-icon-transparent-free-png.png'>"
+
+                pAparece.innerHTML += `<br>Jogador 1 Venceu! Pedra Quebra Tesoura`
+                
+            }else if(jogador2 == 2){
+                divAparece.innerHTML += "<img src='https://images.vexels.com/media/users/3/145827/isolated/preview/357f06ecbaaa77d750259c459c0ed55f-ilustracao-de-pedra-redonda.png'>"
+
+                pAparece.innerHTML += `<br>Empate Jogue Novamente`
+            }else{
+                divAparece.innerHTML += "<img src='https://static.vecteezy.com/system/resources/previews/009/354/743/original/paper-sheet-clipart-design-illustration-free-png.png'>"
+
+                pAparece.innerHTML += `<br>Jogador 2 Venceu, Papel Cobre Pedra`
+
+            }
+        }else{
+            divAparece.innerHTML += "<img src='https://static.vecteezy.com/system/resources/previews/009/354/743/original/paper-sheet-clipart-design-illustration-free-png.png'>"
+            
+            if(jogador2 == 1){
+                divAparece.innerHTML += "<img src='https://static.vecteezy.com/system/resources/previews/016/314/876/non_2x/scissors-scissors-icon-transparent-free-png.png'>"
+
+                pAparece.innerHTML += `<br>Jogador 2 Venceu! Tesoura Corta Papel`
+                
+            }else if(jogador2 == 2){
+                divAparece.innerHTML += "<img src='https://images.vexels.com/media/users/3/145827/isolated/preview/357f06ecbaaa77d750259c459c0ed55f-ilustracao-de-pedra-redonda.png'>"
+
+                pAparece.innerHTML += `<br>Jogador 1 Venceu! Papel Cobre Pedra`
+            }else{
+                divAparece.innerHTML += "<img src='https://static.vecteezy.com/system/resources/previews/009/354/743/original/paper-sheet-clipart-design-illustration-free-png.png'>"
+
+                pAparece.innerHTML += `<br>Empate Jogue Novamente!`
+
+            }
+
+        }
+    }
+
+</script>

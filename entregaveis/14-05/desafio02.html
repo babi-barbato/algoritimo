@@ -1,0 +1,64 @@
+<!--
+a) Solicite ao usuário seu número da sorte, entre 0 e 100.
+b) Ao clicar em "Valendo!", o programa fica sorteando números aleatórios quantas
+vezes forem necessárias até que seja sorteado o número informado em a).
+c) Quando o número for finalmente sorteado, deve aparecer ou um alerta ou na
+página mesmo uma frase como esta:
+Foram necessários X sorteios
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 2</title>
+</head>
+<style>
+    body{
+        font-family: arial;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    #divAparece{
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+</style>
+<body>
+    <h1>Numero da Sorte (0-100)</h1>
+    <input type="text" id="iptNum">
+    <button onclick="sorteio()">Valendo!</button>
+    <div id="divAparece"></div>
+</body>
+</html>
+<script>
+    var numSorte = 0;
+    
+    function sorteio(){
+        divAparece.innerHTML = ""
+        var i = 0;
+        var cont = 0;
+        var numInformado = Number(iptNum.value)
+        numInformado = numInformado.toFixed(0)
+
+        if(numInformado <= 100 && numInformado >= 0){
+            while(i != 1 ){
+                numSorte = Math.random()
+                numSorte = (numSorte * (100-0) + 0).toFixed(0)
+
+                if(numSorte == numInformado){
+                    i++
+                }
+                cont++
+            }
+            alert(`Foram necessários ${cont} sorteios`)
+        }else{
+            alert("Digite um NÚMERO, MENOR que 100 E MAIOR que 0")
+        }
+    }
+
+</script>

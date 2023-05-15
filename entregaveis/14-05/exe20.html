@@ -1,0 +1,85 @@
+<!--
+a) Pergunte ao usuário quantos números ele quer sortear
+b) Ao clicar em "Sortear números", sorteie N números inteiros entre 0 e 100 - conforme o número indicado em a) - e exiba eles na tela em ordem inversa, um embaixo do outro
+c) ao final mostre:
+    O maior número sorteado foi: 999
+    O menor número sorteado foi: 999
+    A média de todos os números sorteados é: 99,99
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 20</title>
+</head>
+<style>
+    body{
+        font-family: arial;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    #divAparece{
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+</style>
+<body>
+    <h1>Quantos Números quer sortear?</h1>
+    <input type="text" id="iptNum">
+    <button onclick="sorteio()">Sortear!</button>
+    <div id="divAparece"></div>
+</body>
+</html>
+<script>
+    var num = 0;
+    function sorteio(){
+        divAparece.innerHTML = ""
+        var numInformado = Number(iptNum.value)
+        var vetor = []
+        var verifica = 0;
+        var cont = 0;
+        var maior = 0;
+        var menor = 101;
+        
+        verifica = (numInformado * 10)
+
+        if(verifica % 10 != 0){
+            alert("Digite um NÚMERO e ele NÃO deve ser QUEBRADO")
+        }else{
+            if(numInformado <= 100 && numInformado >= 0){
+                for(var i = 1; i <= numInformado; i++){
+                    num = Number(Math.random())
+                    num = Number((num * (100-1) + 1).toFixed(0))
+
+                    vetor.push(num)
+
+                    if(num > maior){
+                        maior = num;
+                    }
+                    if(num < menor){
+                        menor = num;
+                    }
+
+                    cont += num;
+                }
+                for(var i = 1; i <= vetor.length; i ++){
+                    divAparece.innerHTML += `O ${vetor.length - i + 1}° Número sorteado foi: ${vetor[(vetor.length) - i]}<br>`
+                }
+                divAparece.innerHTML += `
+                O maior número sorteado foi: ${maior}<br>
+                O menor número sorteado foi: ${menor}<br>
+                A média dos números sorteados foram: ${cont / numInformado}<br>
+                `;
+
+            }else{
+                alert("Digite um número MENOR que 100 E MAIOR que 0")
+            }
+        }    
+    }
+
+</script>
