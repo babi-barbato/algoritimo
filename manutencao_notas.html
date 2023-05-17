@@ -165,6 +165,7 @@
             <p>até:</p>
             <input id="iptNotaMax" type="text">
         </div>
+        <div id="divVetorConsulta"></div>
     </div>
     
     <div id="divAjuste">
@@ -206,6 +207,7 @@
     var cont = 0;//Contador usado apagar espaços
 
     function verRa(){
+        divVetorConsulta.innerHTML = "";
         var raMin = Number(iptRaMin.value);
         var raMax = Number(iptRaMax.value);
         var maiorNota = 0;
@@ -231,7 +233,7 @@
                 if((vetorRaOficial[i] <= raMax) && (vetorRaOficial[i] >= raMin)){
                     conta++;
 
-                    divConsulta.innerHTML += `<br> ${i}° RA: ${vetorRaOficial[i]} e nota: ${vetorNotasOficial[i]}`;
+                    divVetorConsulta.innerHTML += `<br> ${i+1}° RA: ${vetorRaOficial[i]} e nota: ${vetorNotasOficial[i]}`;
 
                     if(vetorNotasOficial[i] > maiorNotaIntervalo){
                         maiorNotaIntervalo = vetorNotasOficial[i]
@@ -246,10 +248,10 @@
                 media += vetorNotasOficial[i];
             }
 
-            divConsulta.innerHTML += `<br><br>Maior Nota do Vetor: ${maiorNota}
-            <br>Menor nota do Vetor: ${menorNota}
+            divVetorConsulta.innerHTML += `<br><br>Maior Nota do Vetor: ${maiorNota}
+            <br>Menor Nota do Vetor: ${menorNota}
             <br>Maior Nota do intervalo: ${maiorNotaIntervalo}
-            <br>Menor nota do intervalo: ${menorNotaIntervalo}
+            <br>Menor Nota do intervalo: ${menorNotaIntervalo}
             <br>Média do Vetor: ${media/vetorNotasOficial.length}
             <br>Média do Intervalo: ${mediaIntervalo/conta}`;
         }else{
@@ -258,6 +260,7 @@
     }
 
     function verNota(){
+        divVetorConsulta.innerHTML = "";
         var notaMin = Number(iptNotaMin.value);
         var notaMax = Number(iptNotaMax.value);
         var maiorNota = 0;
@@ -269,7 +272,7 @@
         var conta = 0;
         
         if(notaMin > notaMax){
-            alert("O 1° Ra deve ser menor que o 2°");
+            alert("A 1° Nota deve ser menor que a 2°");
         }else if(notaMin != 0 && notaMax != 0){
             for(var i = 0; i < vetorRaOficial.length; i++){
                 if(vetorNotasOficial[i] > maiorNota){
@@ -283,7 +286,7 @@
                 if((vetorNotasOficial[i] <= notaMax) && (vetorNotasOficial[i] >= notaMin)){
                     conta++;
 
-                    divConsulta.innerHTML += `<br> ${i}° RA: ${vetorRaOficial[i]} e nota: ${vetorNotasOficial[i]}`;
+                    divVetorConsulta.innerHTML += `<br> ${i+1}° RA: ${vetorRaOficial[i]} e nota: ${vetorNotasOficial[i]}`;
 
                     if(vetorNotasOficial[i] > maiorNotaIntervalo){
                         maiorNotaIntervalo = vetorNotasOficial[i]
@@ -298,14 +301,14 @@
                 media += vetorNotasOficial[i];
             }
 
-            divConsulta.innerHTML += `<br><br>Maior Nota do Vetor: ${maiorNota}
-            <br>Menor nota do Vetor: ${menorNota}
+            divVetorConsulta.innerHTML += `<br><br>Maior Nota do Vetor: ${maiorNota}
+            <br>Menor Nota do Vetor: ${menorNota}
             <br>Maior Nota do intervalo: ${maiorNotaIntervalo}
-            <br>Menor nota do intervalo: ${menorNotaIntervalo}
+            <br>Menor Nota do intervalo: ${menorNotaIntervalo}
             <br>Média do Vetor: ${media/vetorNotasOficial.length}
             <br>Média do Intervalo: ${mediaIntervalo/conta}`;
         }else{
-            alert("Preencha os dois campos do RA")
+            alert("Preencha os dois campos das Notas")
         }
     }
 

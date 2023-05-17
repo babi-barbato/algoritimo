@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corrida de Rua - Bárbara</title>
+</head>
+<style>
+    p,h1{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: arial;
+        font-size: 20px;
+    }
+    #divPergunta{
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        width: 30%;
+        align-items: center;
+        justify-content: center;
+    }
+    #divPergunta div{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    input{
+        height: 30px;
+        width: 100%;
+    }
+    button{
+        height: 25px;
+        width: 101%;
+    }
+</style>
+<body>
+    <div id="divPergunta">
+        <div>
+            <p>Digite o nome dos 5 corredores (um por vez)</p>
+            <input type="text" id="iptNome">
+            <button id="btnNome" onclick="confirmar()">Confirmar!</button>
+        </div>
+        <div>
+            <p>Digite a quantidade de KM (5-42)</p>
+            <input type="text" id="iptKm">
+            <button id="btnKm" onclick="enviar()">Enviar!</button>
+        </div>
+        <button onclick="largada()">Dar Largada</button>
+    </div>
+</body>
+</html>
+<script>
+    var p1 = {
+        tempo: []
+    }
+    var p2 = {
+        tempo: []
+    }
+    var p3 = {
+        tempo: []
+    }
+    var p4 = {
+        tempo: []
+    }
+    var p5 = {
+        tempo: []
+    }
+var vetorNome = [];
+var km = 0;
+var vetorGeral = [p1,p2,p3,p4,p5]
+var tempoSorteado = 0;
+var vence = 99;
+
+function confirmar(){//Cadastrar corredor
+    var nome = iptNome.value
+
+    if(nome == ""){
+        alert("Digite alguma coisa no campo!")
+    }else{
+        if(vetorNome.length >= 5){
+            alert("Você já digitou o nome dos 5 corredores!");
+            iptNome.disabled = "true";
+            btnNome.disabled = "true";
+        }else{
+            vetorNome.push(nome);
+            alert(`Corredor(a) ${nome} cadastrado!`)
+        }
+    }
+}
+
+function enviar(){//cadastrar KM
+    km = Number(iptKm.value);
+
+    if(km >= 5 && km <= 42){
+        alert("KM Inserido com Sucesso!");
+        iptKm.disabled = "true";
+        btnKm.disabled = "true";
+    }else{
+        alert("Valor do KM deve ser NÚMERICO ENTRE (5 - 42)");
+    }
+}
+
+function largada(){
+    for(var i = 0; i < km; i++){
+        for(var cont = 0; cont < 5; cont++){
+            tempoSorteado = Number(Math.random() * 2 + 4).toFixed(1)
+            vetorGeral[cont].tempo.push(tempoSorteado)
+            if(tempoSorteado < vence){
+                vence = tempoSorteado
+                posicaoNome = cont
+            }
+        }
+        alert(`Menor tempo foi: ${vence} e ele foi feito por ${vetorNome[posicaoNome]}`)
+        vence = 99;
+        posicaoNome = 0;
+
+
+        // if(){
+        //     break;
+        // }
+        // alert()
+    }
+}
+</script>
